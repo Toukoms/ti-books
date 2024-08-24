@@ -1,0 +1,70 @@
+import { books } from "@/constant/books";
+import Book from "@/components/ui/custom/book";
+import SearchBar from "@/components/ui/custom/search-bar";
+import GenreSelection from "@/components/ui/custom/genre-selection";
+import BooksPagination from "@/components/ui/custom/books-pagination";
+
+const filterBooks = (query: string, genre: IBooks["genre"] | "All") => {
+  return books.filter(
+    (book) =>
+      book.title.toLowerCase().includes(query.toLowerCase()) &&
+      (genre === "All" || book.genre === genre)
+  );
+};
+
+const BOOKS_PER_PAGE = 8;
+
+const ExplorePage = ({
+  searchParams,
+}: {
+  searchParams?: {
+    query?: string;
+    page?: string;
+    genre?: string;
+  };
+}) => {
+  const currentPage = Number(searchParams?.page) || 1;
+  const searchQuery = searchParams?.query || "";
+  const genreFilter = searchParams?.genre || "All";
+  const filteredBooks = filterBooks(
+    searchQuery,
+    genreFilter as IBooks["genre"] | "All"
+  );
+  const startIndex = (currentPage - 1) * BOOKS_PER_PAGE;
+  const endIndex = startIndex + BOOKS_PER_PAGE;
+  const currentBooks = filteredBooks.slice(startIndex, endIndex);
+
+  // console.log(filteredBooks);
+  // console.log(searchQuery);
+
+  return (
+    <div className="max-w-screen-xl px-4 mx-auto mt-4 mb-4 2xl:max-w-screen-2xl">
+      <div className="flex items-center p-4 rounded-sm bg-primary/10">
+        <SearchBar />
+        <GenreSelection />
+      </div>
+
+      <p className="mt-4 ml-4 text-3xl text-gray-800">
+        {searchQuery === "" && genreFilter === "All"
+          ? "Discover our books"
+          : filteredBooks.length !== 0
+          ? `Results found: ${filteredBooks.length}`
+          : "No result found. Try a different search term or genre!"}
+      </p>
+
+      <div className="px-2 py-4 pb-8 min-h-72">
+        {currentBooks.length !== 0 && (
+          <div className="grid w-full grid-cols-1 gap-x-4 gap-y-8 justify-items-center sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
+            {currentBooks.map((book) => (
+              <Book key={`storybook_${book.id}`} {...book} />
+            ))}
+          </div>
+        )}
+      </div>
+
+      <BooksPagination filteredBooks={filteredBooks} booksPerPage={BOOKS_PER_PAGE} />
+    </div>
+  );
+};
+
+export default ExplorePage;
