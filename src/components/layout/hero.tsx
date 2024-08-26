@@ -8,14 +8,14 @@ const Hero = () => {
   return (
     <section className="flex justify-center my-4 mb-16 relative">
       <Image
-        className="absolute top-1/2 transform -translate-y-1/2 left-20 rounded-[4rem] -scale-x-100"
+        className="absolute top-1/2 transform -translate-y-1/2 left-20 -scale-x-100"
         src={"/images/boy_reading_angano.png"}
         alt={"boy reading angano"}
         width={300}
         height={300}
       />
       <Image
-        className="absolute top-1/2 transform -translate-y-1/2 right-20 rounded-[4rem]"
+        className="absolute top-1/2 transform -translate-y-1/2 right-20"
         src={"/images/boy_reading_angano.png"}
         alt={"boy reading angano"}
         width={300}
