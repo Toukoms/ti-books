@@ -4,7 +4,7 @@ import SearchBar from "@/components/ui/custom/search-bar";
 import GenreSelection from "@/components/ui/custom/genre-selection";
 import BooksPagination from "@/components/ui/custom/books-pagination";
 
-const filterBooks = (query: string, genre: IBooks["genre"] | "All") => {
+const filterBooks = (query: string, genre: IBook["genre"] | "All") => {
   return books.filter(
     (book) =>
       book.title.toLowerCase().includes(query.toLowerCase()) &&
@@ -28,7 +28,7 @@ const ExplorePage = ({
   const genreFilter = searchParams?.genre || "All";
   const filteredBooks = filterBooks(
     searchQuery,
-    genreFilter as IBooks["genre"] | "All"
+    genreFilter as IBook["genre"] | "All"
   );
   const startIndex = (currentPage - 1) * BOOKS_PER_PAGE;
   const endIndex = startIndex + BOOKS_PER_PAGE;

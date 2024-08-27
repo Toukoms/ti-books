@@ -4,8 +4,9 @@ import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
 import { Skeleton } from "../skeleton";
 import Link from "next/link";
+import { Badge } from "../badge";
 
-const Book = (book: IBooks) => {
+const Book = (book: IBook) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -13,8 +14,11 @@ const Book = (book: IBooks) => {
   }, []);
 
   return (
-    <Link  className="w-full overflow-hidden bg-white border rounded-lg shadow-md h-80 group hover:cursor-pointer" href={`/explore/${book.id}`}>
-        <div className="relative overflow-hidden h-3/5">
+    <Link
+      className="w-full overflow-hidden bg-white border rounded-lg shadow-md h-80 group hover:cursor-pointer"
+      href={`/explore/${book.id}`}
+    >
+      <div className="relative overflow-hidden h-3/5">
         {loading ? (
           <Skeleton className="absolute top-0 left-0 w-full h-full bg-slate-500/20" />
         ) : (
@@ -26,25 +30,33 @@ const Book = (book: IBooks) => {
             className="absolute top-0 left-0 object-cover object-center w-full h-full transition-all duration-500 ease-in-out group-hover:brightness-75 group-hover:scale-110"
           />
         )}
+      </div>
+      <div className="p-4">
+        <h2 className="text-xl font-bold capitalize line-clamp-1">
+          {book.title}
+        </h2>
+        <div className="text-sm text-gray-600">
+          {loading ? (
+            <Skeleton className="w-1/2 h-4" />
+          ) : (
+            `Author: ${book?.author}`
+          )}
         </div>
-        <div className="p-4">
-          <h2 className="text-xl font-bold capitalize line-clamp-1">{book.title}</h2>
-<p>
-          Author: <span className="font-normal">{book.author}</span>
-        </p>
-        <p
-          className={cn("text-sm text-primary font-bold", {
-            "text-red-400": book.genre === "Horror",
-            "text-yellow-400": book.genre === "Comedy",
-            "text-blue-400": book.genre === "Drama",
-            "text-violet-400": book.genre === "Fantasy",
+        <div className="mb-2 text-sm text-gray-500">
+          {loading ? <Skeleton className="w-1/4 h-4" /> : book?.publicationDate}
+        </div>
+        <Badge
+          variant={"outline"}
+          className={cn("border mb-1", {
+            "text-horror border-horror": book.genre === "Horror",
+            "text-comedy border-comedy": book.genre === "Comedy",
+            "text-fantasy border-fantasy": book.genre === "Fantasy",
+            "text-drama border-drama": book.genre === "Drama",
           })}
         >
-          {book.genre}
-        </p>
-        <p className="text-sm font-light">{book.publicationDate}</p>
-        </div>
-        
+          {loading ? <Skeleton className="w-1/4 h-4" /> : book.genre}
+        </Badge>
+      </div>
     </Link>
   );
 };

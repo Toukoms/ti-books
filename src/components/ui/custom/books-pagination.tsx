@@ -17,7 +17,7 @@ const BooksPagination = ({
   filteredBooks,
   booksPerPage,
 }: {
-  filteredBooks: IBooks[];
+  filteredBooks: IBook[];
   booksPerPage: number;
 }) => {
   const searchParams = useSearchParams();

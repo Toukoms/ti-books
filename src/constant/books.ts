@@ -1,4 +1,4 @@
-export const books: IBooks[] = [
+export const books: IBook[] = [
   {
     id: "1",
     title: "Darafify",

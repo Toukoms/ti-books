@@ -3,20 +3,38 @@ import Image from "next/image";
 import Link from "next/link";
 
 const FeaturedStories = () => {
-  const bestStories = books.slice(0, 3)
+  const bestStories = books.slice(0, 3);
 
   return (
-    <section className="bg-accent text-accent-foreground py-16">
-      <div className="container mx-auto px-4 max-w-screen-lg">
-        <h2 className="text-3xl font-semibold text-center mb-8">Best Stories</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <section className="py-16 bg-accent text-accent-foreground">
+      <div className="container max-w-screen-lg px-4 mx-auto">
+        <h2 className="mb-8 text-3xl font-semibold text-center">
+          Best Stories
+        </h2>
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           {bestStories.map((story, index) => (
-            <div key={index} className="bg-white shadow-lg rounded-lg overflow-hidden border border-transparent hover:border-primary transition-colors duration-500 ease-in-out">
-              <Image src={story.image} alt={story.title} className="w-full h-48 object-cover" width={100} height={100}/>
+            <div
+              key={index}
+              className="overflow-hidden transition-colors duration-500 ease-in-out bg-white border border-transparent rounded-lg shadow-lg hover:border-primary"
+            >
+              <Image
+                src={story.image}
+                alt={story.title}
+                className="object-cover w-full h-48"
+                width={1000}
+                height={1000}
+              />
               <div className="p-6">
-                <h3 className="text-xl font-bold mb-2">{story.title}</h3>
-                <p className="text-gray-700 mb-4 line-clamp-3">{story.synopsis}</p>
-                <Link href={`/explore/${story.id}`} className="text-green-500 hover:text-green-700 font-semibold">Read More</Link>
+                <h3 className="mb-2 text-xl font-bold">{story.title}</h3>
+                <p className="mb-4 text-gray-700 line-clamp-3">
+                  {story.synopsis}
+                </p>
+                <Link
+                  href={`/explore/${story.id}`}
+                  className="font-semibold text-green-500 hover:text-green-700"
+                >
+                  Read More
+                </Link>
               </div>
             </div>
           ))}

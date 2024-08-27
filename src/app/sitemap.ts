@@ -2,7 +2,7 @@ import { links } from "@/constant/links";
 import { books } from "@/constant/books";
 import type { MetadataRoute } from "next";
 
-const fetchBooks = async (): Promise<IBooks[]> => {
+const fetchBooks = async (): Promise<IBook[]> => {
   return new Promise((resolve) => {
     resolve(books)
   })}

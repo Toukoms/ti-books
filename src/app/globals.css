@@ -24,6 +24,11 @@
     --input: 240 5.9% 90%;
     --ring: 142.1 76.2% 36.3%;
     --radius: 0.5rem;
+
+    --color-horror: 0, 100%, 65%;
+    --color-comedy: 50, 70%, 50%;
+    --color-drama: 210, 100%, 65%;
+    --color-fantasy: 270, 100%, 75%;
   }
 
   .dark {
@@ -53,6 +58,7 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
@@ -62,16 +68,25 @@
 .loader {
   width: 60px;
   aspect-ratio: 4;
-  --_g: no-repeat radial-gradient(circle closest-side,#000 90%,#0000);
-  background: 
-    var(--_g) 0%   50%,
-    var(--_g) 50%  50%,
+  --_g: no-repeat radial-gradient(circle closest-side, #000 90%, #0000);
+  background:
+    var(--_g) 0% 50%,
+    var(--_g) 50% 50%,
     var(--_g) 100% 50%;
   background-size: calc(100%/3) 100%;
   animation: l7 1s infinite linear;
 }
+
 @keyframes l7 {
-    33%{background-size:calc(100%/3) 0%  ,calc(100%/3) 100%,calc(100%/3) 100%}
-    50%{background-size:calc(100%/3) 100%,calc(100%/3) 0%  ,calc(100%/3) 100%}
-    66%{background-size:calc(100%/3) 100%,calc(100%/3) 100%,calc(100%/3) 0%  }
+  33% {
+    background-size: calc(100%/3) 0%, calc(100%/3) 100%, calc(100%/3) 100%
+  }
+
+  50% {
+    background-size: calc(100%/3) 100%, calc(100%/3) 0%, calc(100%/3) 100%
+  }
+
+  66% {
+    background-size: calc(100%/3) 100%, calc(100%/3) 100%, calc(100%/3) 0%
+  }
 }
