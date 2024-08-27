@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import { cn } from "@/lib/utils";
+import { Analytics } from '@vercel/analytics/react';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -50,6 +51,7 @@ export default function RootLayout({
         <Header />
         <main className="flex-1 mt-20 mb-8">{children}</main>
         <Footer />
+        <Analytics />
       </body>
     </html>
   );
