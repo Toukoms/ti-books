@@ -1,4 +1,4 @@
-import { books } from "@/constant/books";
+import { books } from "@/constants/books";
 import Image from "next/image";
 import Link from "next/link";
 

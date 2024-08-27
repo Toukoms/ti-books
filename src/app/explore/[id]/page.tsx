@@ -1,5 +1,5 @@
 import BookDetail from "@/components/ui/custom/book-detail";
-import { books } from "@/constant/books";
+import { books } from "@/constants/books";
 
 export function generateStaticParams() {
   return books.map(book => book.id)
@@ -11,7 +11,6 @@ const BookDetailPage = ({ params }: { params: { id?: string } }) => {
     <main className="max-w-screen-lg mx-auto mt-4">
       <BookDetail id={params.id!} />
       
-
       {/* <div className="w-2/3 p-4 mx-auto mt-4 mb-8">
         <h2 className="ml-4 text-2xl font-bold">Glossary</h2>
         <ul className="flex flex-col gap-2 mt-2 ml-16 text-justify list-disc list-outside">

@@ -1,5 +1,5 @@
 "use client";
-import { links } from "@/constant/links";
+import { links } from "@/constants/links";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { usePathname } from "next/navigation";

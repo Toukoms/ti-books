@@ -1,10 +1,10 @@
-import { books } from "@/constant/books";
+import { books } from "@/constants/books";
 import Book from "@/components/ui/custom/book";
 import SearchBar from "@/components/ui/custom/search-bar";
 import GenreSelection from "@/components/ui/custom/genre-selection";
 import BooksPagination from "@/components/ui/custom/books-pagination";
 
-const filterBooks = (query: string, genre: IBook["genre"] | "All") => {
+const filterBooks = async (query: string, genre: IBook["genre"] | "All") => {
   return books.filter(
     (book) =>
       book.title.toLowerCase().includes(query.toLowerCase()) &&
@@ -14,7 +14,7 @@ const filterBooks = (query: string, genre: IBook["genre"] | "All") => {
 
 const BOOKS_PER_PAGE = 8;
 
-const ExplorePage = ({
+const ExplorePage = async ({
   searchParams,
 }: {
   searchParams?: {
@@ -26,7 +26,7 @@ const ExplorePage = ({
   const currentPage = Number(searchParams?.page) || 1;
   const searchQuery = searchParams?.query || "";
   const genreFilter = searchParams?.genre || "All";
-  const filteredBooks = filterBooks(
+  const filteredBooks = await filterBooks(
     searchQuery,
     genreFilter as IBook["genre"] | "All"
   );
@@ -53,16 +53,23 @@ const ExplorePage = ({
       </p>
 
       <div className="px-2 py-4 pb-8 min-h-72">
-        {currentBooks.length !== 0 && (
+        {searchParams ? (
           <div className="grid w-full grid-cols-1 gap-x-4 gap-y-8 justify-items-center sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
             {currentBooks.map((book) => (
               <Book key={`storybook_${book.id}`} {...book} />
             ))}
           </div>
+        ) : (
+          <div className="flex items-center justify-center h-72">
+            <div className="loader"></div>
+          </div>
         )}
       </div>
 
-      <BooksPagination filteredBooks={filteredBooks} booksPerPage={BOOKS_PER_PAGE} />
+      <BooksPagination
+        filteredBooks={filteredBooks}
+        booksPerPage={BOOKS_PER_PAGE}
+      />
     </div>
   );
 };

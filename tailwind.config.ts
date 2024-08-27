@@ -71,10 +71,19 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        flip: {
+          '0%': { transform: 'rotateY(0)' },
+          '25%': { transform: 'rotateY(90deg)' },
+          '50%': { transform: 'rotateY(180deg)' },
+          '75%': { transform: 'rotateY(270deg)' },
+          '100%': { transform: 'rotateY(360deg)' },
+        },
+
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        flip: 'flip 1.5s infinite linear',
       },
     },
   },

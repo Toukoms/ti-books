@@ -3,8 +3,8 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Skeleton } from "../skeleton";
-import { MoveUpRight } from "lucide-react";
-import { books } from "@/constant/books";
+import { ArrowLeft, MoveUpRight } from "lucide-react";
+import { books } from "@/constants/books";
 import { notFound } from "next/navigation";
 import { Badge } from "../badge";
 import { cn } from "@/lib/utils";
@@ -29,7 +29,13 @@ const StorybookDetail: React.FC<StorybookDetailProps> = ({ id }) => {
   }, [id]);
 
   return (
-    <div className="max-w-screen-md px-6 py-8 mx-auto mb-16 bg-white border rounded-lg shadow-md">
+    <div className="max-w-screen-md px-6 pt-4 pb-8 mx-auto mb-16 bg-white border rounded-lg shadow-md">
+      <div className="mb-4">
+        <Link href="/explore" className="inline-flex items-center text-lg text-green-600 hover:underline">
+          <ArrowLeft size={16} className="mr-2" />
+          Return Back
+        </Link>
+      </div>
       <div className="relative w-full h-64 mb-4">
         {loading ? (
           <Skeleton className="absolute top-0 left-0 w-full h-full bg-slate-100" />

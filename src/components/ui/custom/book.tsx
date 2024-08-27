@@ -32,29 +32,30 @@ const Book = (book: IBook) => {
         )}
       </div>
       <div className="p-4">
-        <h2 className="text-xl font-bold capitalize line-clamp-1">
+        <div>{loading ?  <Skeleton className="w-1/2 h-3 mb-1" />: <h2 className="text-xl font-bold capitalize line-clamp-1">
           {book.title}
-        </h2>
+        </h2>}</div>
         <div className="text-sm text-gray-600">
           {loading ? (
-            <Skeleton className="w-1/2 h-4" />
+            <Skeleton className="w-1/2 h-3 mb-1" />
           ) : (
             `Author: ${book?.author}`
           )}
         </div>
         <div className="mb-2 text-sm text-gray-500">
-          {loading ? <Skeleton className="w-1/4 h-4" /> : book?.publicationDate}
+          {loading ? <Skeleton className="w-1/4 h-3 mb-1" /> : book?.publicationDate}
         </div>
         <Badge
           variant={"outline"}
-          className={cn("border mb-1", {
+          className={cn("border min-w-12 mb-2", {
             "text-horror border-horror": book.genre === "Horror",
             "text-comedy border-comedy": book.genre === "Comedy",
             "text-fantasy border-fantasy": book.genre === "Fantasy",
             "text-drama border-drama": book.genre === "Drama",
+            "border-none": loading
           })}
         >
-          {loading ? <Skeleton className="w-1/4 h-4" /> : book.genre}
+          {loading ? <Skeleton className="w-full h-3" /> : book.genre}
         </Badge>
       </div>
     </Link>
