@@ -39,14 +39,14 @@ const ExplorePage = ({
 
   return (
     <div className="max-w-screen-xl px-4 mx-auto mt-4 mb-4 2xl:max-w-screen-2xl">
-      <div className="flex items-center p-4 rounded-sm bg-primary/10">
+      <div className="flex items-center justify-center px-4">
         <SearchBar />
         <GenreSelection />
       </div>
 
       <p className="mt-4 ml-4 text-3xl text-gray-800">
         {searchQuery === "" && genreFilter === "All"
-          ? "Discover our books"
+          ? "Discover our storybooks"
           : filteredBooks.length !== 0
           ? `Results found: ${filteredBooks.length}`
           : "No result found. Try a different search term or genre!"}

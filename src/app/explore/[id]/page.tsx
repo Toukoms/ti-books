@@ -8,6 +8,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { useEffect, useState } from "react";
 
+export function generateStaticProps() {
+  return books.map(book => book.id)
+}
+
 const BookDetailPage = ({ params }: { params: { id: string } }) => {
   const [loading, setLoading] = useState(true);
   const [book, setBook] = useState<IBooks | undefined>(undefined);
@@ -26,22 +30,22 @@ const BookDetailPage = ({ params }: { params: { id: string } }) => {
   }, []);
 
   return (
-    <main className="max-w-screen-lg mt-4 mx-auto">
-      <div className="rounded-xl shadow-md w-2/3 mx-auto mt-4 p-8 border flex gap-4 justify-center">
-        <div className="w-1/3 aspect-square relative rounded-md overflow-hidden border">
+    <main className="max-w-screen-lg mx-auto mt-4">
+      <div className="flex justify-center w-2/3 gap-4 p-8 mx-auto mt-4 border shadow-md rounded-xl">
+        <div className="relative w-1/3 overflow-hidden border rounded-md aspect-square">
           {loading ? (
-            <Skeleton className="w-full h-full absolute top-0 left-0 bg-slate-100" />
+            <Skeleton className="absolute top-0 left-0 w-full h-full bg-slate-100" />
           ) : (
             <Image
               src={book?.image || ""}
               alt={book?.title || ""}
               width={100}
               height={100}
-              className="w-full h-full object-cover object-center absolute top-0 left-0"
+              className="absolute top-0 left-0 object-cover object-center w-full h-full"
             />
           )}
         </div>
-        <div className="w-2/3 flex flex-col gap-2">
+        <div className="flex flex-col w-2/3 gap-2">
           <h1 className="text-3xl font-bold">{book?.title}</h1>
           <div className="font-normal">
             <p
@@ -54,19 +58,19 @@ const BookDetailPage = ({ params }: { params: { id: string } }) => {
             >
               {book?.genre}
             </p>
-            <p className="text-slate-800 text-sm">
+            <p className="text-sm text-slate-800">
               Author: <span className="font-medium">{book?.author}</span>
             </p>
 
             <p className="text-xs text-slate-600">{book?.publicationDate}</p>
           </div>
-          <p className="text-sm text-slate-700 leading-tight text-justify">
+          <p className="text-sm leading-tight text-justify text-slate-700">
             {book?.synopsis}
           </p>
           <Link
             href={book?.link || ""}
             target="_blank"
-            className="group flex items-baseline gap-1 mt-auto hover:text-primary hover:underline w-fit"
+            className="flex items-baseline gap-1 mt-auto group hover:text-primary hover:underline w-fit"
           >
             Read
             <MoveUpRight size={12} className="group-hover:scale-125" />
@@ -74,9 +78,9 @@ const BookDetailPage = ({ params }: { params: { id: string } }) => {
         </div>
       </div>
 
-      <div className="w-2/3 mx-auto mt-4 mb-8 p-4">
-        <h2 className="text-2xl font-bold ml-4">Glossary</h2>
-        <ul className="list-disc list-outside ml-16 mt-2 flex flex-col gap-2 text-justify">
+      <div className="w-2/3 p-4 mx-auto mt-4 mb-8">
+        <h2 className="ml-4 text-2xl font-bold">Glossary</h2>
+        <ul className="flex flex-col gap-2 mt-2 ml-16 text-justify list-disc list-outside">
           <li>
             <span className="font-bold underline">Vazimba:</span> Lorem ipsum dolor sit amet consectetur
             adipisicing elit. Eligendi tenetur sint illo asperiores odio.

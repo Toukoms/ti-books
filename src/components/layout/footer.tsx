@@ -7,9 +7,9 @@ import { Input } from "../ui/input";
 
 const Footer = () => {
   return (
-    <footer className="p-4 pt-16 bg-secondary text-secondary-foreground">
+    <footer className="p-4 pt-16 border bg-primary/20 text-secondary-foreground rounded-tl-2xl rounded-tr-2xl border-primary/30">
       <div className="container px-4 mx-auto">
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 xl:grid-cols-4">
           {/* Mission Statement */}
           <div>
             <Image
@@ -32,29 +32,34 @@ const Footer = () => {
             <h4 className="mb-4 text-lg font-semibold">Quick Links</h4>
             <ul>
               <li>
-                <a href="/" className="hover:text-white">
+                <Link href="/" className="hover:text-primary hover:underline">
                   Home
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/stories" className="hover:text-white">
+                <Link href="/explore" className="hover:text-primary hover:underline">
                   Stories
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/about" className="hover:text-white">
+                <Link href="/about" className="hover:text-primary hover:underline">
                   About Us
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/blog" className="hover:text-white">
+                <Link href="/blog" className="hover:text-primary hover:underline">
                   Blog
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/contact" className="hover:text-white">
+                <Link href="/faq" className="hover:text-primary hover:underline">
+                  FAQ
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="hover:text-primary hover:underline">
                   Contact Us
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -64,23 +69,23 @@ const Footer = () => {
             <h4 className="mb-4 text-lg font-semibold">Contact Us</h4>
             <p>
               Email:{" "}
-              <a
+              <Link
                 href="mailto:contact@ti-books.com"
-                className="hover:text-white"
+                className="hover:text-primary hover:underline"
               >
                 contact@ti-books.com
-              </a>
+              </Link>
             </p>
             <div className="mt-4">
-              <a href="#" className="mr-4 hover:text-white">
+              <Link href="#" className="mr-4 hover:text-primary hover:underline">
                 Facebook
-              </a>
-              <a href="#" className="mr-4 hover:text-white">
+              </Link>
+              <Link href="#" className="mr-4 hover:text-primary hover:underline">
                 Twitter
-              </a>
-              <a href="#" className="hover:text-white">
+              </Link>
+              <Link href="#" className="hover:text-primary hover:underline">
                 Instagram
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -100,7 +105,7 @@ const Footer = () => {
 
         {/* Copyright */}
         <div className="mt-8 text-sm text-center">
-          <Separator className="mb-6" />
+          <Separator className="mb-6 bg-gray-300" />
           <p>© 2024 Ti-Books. All rights reserved.</p>
           <p>
             <Link

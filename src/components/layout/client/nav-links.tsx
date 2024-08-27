@@ -1,31 +1,23 @@
 "use client";
-import { buttonVariants } from "@/components/ui/button";
+import { links } from "@/constant/links";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
 
-const NavLinks = () => {
+const NavLinks = ({className}:{className?:string}) => {
   const pathname = usePathname();
   return (
-    <nav className="flex items-center gap-8">
-      <Link
-        href="/about"
+    <nav className={cn("flex items-center gap-2 md:gap-4 lg:gap-8 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2", className)}>
+      {links.map(link => <Link
+      key={`nav_link_${link.name}`}
+        href={link.href}
         className={cn("transition-colors duration-300  hover:text-primary", {
-          "underline text-primary": pathname === "/about",
+          "underline text-primary": pathname === link.href,
         })}
       >
-        About Us
-      </Link>
-      <Link
-        href="/explore"
-        className={cn(
-          buttonVariants(),
-          "rounded-full px-6 bg-green-800 hover:bg-green-700 transition-colors duration-300"
-        )}
-      >
-        Explore
-      </Link>
+        {link.name}
+      </Link>)}
     </nav>
   );
 };
