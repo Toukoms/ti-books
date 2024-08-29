@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 const articles = [
+  // TODO: Update to real link from website blog post
   {
     title: 'The Importance of Preserving Malagasy Folktales',
     excerpt: 'Discover why it’s crucial to keep the tradition of Malagasy folktales alive and how Ti-Books contributes to this cause.',

@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 const AboutPage = () => {
+  // TODO: Add our own team
   const teamMembers = [
     {
       name: "Rasoa Rakoto",
@@ -38,7 +39,7 @@ const AboutPage = () => {
               Our Mission & Vision
             </h3>
             <p className="mt-4 text-gray-600 text-lg">
-              Our mission is to bring Malagasy Angano to the world, promoting
+              Our mission is to bring Angano Malagasy to the world, promoting
               cultural understanding and supporting English language learning
               through engaging digital storybooks. We envision a world where
               these ancient tales are cherished by people of all ages and

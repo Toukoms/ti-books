@@ -1,5 +1,5 @@
 "use client";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
 import { useEffect } from "react";
 import { FaBookOpen, FaExclamationTriangle } from "react-icons/fa"; // Importing the book and danger icons
@@ -24,12 +24,12 @@ const ErrorPage = ({
       </div>
       <h1 className="text-4xl font-bold">Oops! Something went wrong.</h1>
       <p className="mt-2 text-lg text-gray-700">
-        We couldn&apos;t find the page you&apos;re looking for.
+        {error.message}
       </p>
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2 mt-6">
         <Link
           href="/"
-          className="mt-6 text-green-600 underline hover:text-green-800"
+          className={buttonVariants()}
         >
           Return to Home
         </Link>
