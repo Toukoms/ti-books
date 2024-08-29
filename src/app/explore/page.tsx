@@ -1,10 +1,23 @@
-import { books } from "@/constants/books";
 import Book from "@/components/ui/custom/book";
 import SearchBar from "@/components/ui/custom/search-bar";
 import GenreSelection from "@/components/ui/custom/genre-selection";
 import BooksPagination from "@/components/ui/custom/books-pagination";
+import { getStoryBooks } from "@/lib/firestore/story-books";
+import { unstable_cache } from "next/cache";
 
-const filterBooks = async (query: string, genre: IBook["genre"] | "All") => {
+const getStoryBooksCached = unstable_cache(
+  async () => {
+    return await getStoryBooks()
+  },
+  ['story-books'],
+  { revalidate: 3600, tags: ['story-books'] }
+)
+
+const filterBooks = (
+  books: IBook[],
+  query: string,
+  genre: IBook["genre"] | "All"
+) => {
   return books.filter(
     (book) =>
       book.title.toLowerCase().includes(query.toLowerCase()) &&
@@ -23,10 +36,13 @@ const ExplorePage = async ({
     genre?: string;
   };
 }) => {
-  const currentPage = Number(searchParams?.page) || 1;
+  const currentPage =
+    Number(searchParams?.page) || 1;
   const searchQuery = searchParams?.query || "";
   const genreFilter = searchParams?.genre || "All";
-  const filteredBooks = await filterBooks(
+  const books = await getStoryBooksCached();
+  const filteredBooks = filterBooks(
+    books,
     searchQuery,
     genreFilter as IBook["genre"] | "All"
   );
@@ -34,8 +50,10 @@ const ExplorePage = async ({
   const endIndex = startIndex + BOOKS_PER_PAGE;
   const currentBooks = filteredBooks.slice(startIndex, endIndex);
 
-  // console.log(filteredBooks);
+  // console.log(filterBooks);
   // console.log(searchQuery);
+
+  if (filteredBooks.length === 0) throw new Error("Error collecting storybooks");
 
   return (
     <div className="max-w-screen-xl px-4 mx-auto mt-4 mb-4 2xl:max-w-screen-2xl">
@@ -53,7 +71,7 @@ const ExplorePage = async ({
       </p>
 
       <div className="px-2 py-4 pb-8 min-h-72">
-        {searchParams ? (
+        {books.length !== 0 ? (
           <div className="grid w-full grid-cols-1 gap-x-4 gap-y-8 justify-items-center sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
             {currentBooks.map((book) => (
               <Book key={`storybook_${book.id}`} {...book} />

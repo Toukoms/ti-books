@@ -17,7 +17,7 @@ export const books: IBook[] = [
     synopsis:
       "The birds decided to choose a king. The hawk was rejected for being too aggressive, so the hoopoe, known for its beauty and unique sounds, was chosen instead. The owl, absent during the selection, remains hunted by other birds",
     publicationDate: "13 august 2024",
-    link: "https://simplebooklet.com/colorfulwatercolorcreateyour64#page=1",
+    link: "https://simplebooklet.com/colorfulwatercolorcreateyour64",
     image: "https://iili.io/dVOZskP.jpg",
     genre: "Fantasy",
   },
