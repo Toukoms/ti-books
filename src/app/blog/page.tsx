@@ -1,21 +1,20 @@
 import Link from "next/link";
 
 const articles = [
-  // TODO: Update to real link from website blog post
   {
     title: 'The Importance of Preserving Malagasy Folktales',
     excerpt: 'Discover why it’s crucial to keep the tradition of Malagasy folktales alive and how Ti-Books contributes to this cause.',
-    link: '/blog/preserving-malagasy-folktales',
+    link: 'https://medium.com/@tokiniaina090605/the-importance-of-preserving-malagasy-folktales-03dcfd59ed3f',
   },
   {
     title: 'How Interactive Storybooks Aid in Language Learning',
     excerpt: 'Learn how interactive storybooks can enhance English language learning for young Malagasy students.',
-    link: '/blog/interactive-storybooks-language-learning',
+    link: 'https://medium.com/@tokiniaina090605/how-interactive-storybooks-aid-in-language-learning-36931986b979',
   },
   {
     title: 'Exploring the Richness of Malagasy Culture',
     excerpt: 'Dive into the vibrant culture of Madagascar through its stories, customs, and traditions.',
-    link: '/blog/exploring-malagasy-culture',
+    link: 'https://medium.com/@tokiniaina090605/47ea1ce31e29',
   },
 ];
 
@@ -38,7 +37,7 @@ const BlogPage = () => {
             <div key={index} className="bg-gray-100 p-6 rounded-lg shadow-lg">
               <h3 className="text-2xl font-semibold text-gray-800 mb-2">{article.title}</h3>
               <p className="text-gray-600 mb-4">{article.excerpt}</p>
-              <Link href={article.link} className="text-green-500 hover:underline">
+              <Link href={article.link} target="_blank" className="text-green-500 hover:underline">
                 Read More
               </Link>
             </div>
