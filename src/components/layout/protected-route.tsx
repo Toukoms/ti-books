@@ -10,20 +10,20 @@ export default function PrivateRoute({
   protectedRoutes: string[];
   children: React.ReactNode;
 }) {
-  const pathname = usePathname();
+  const pathname = usePathname() || "/";
   const router = useRouter();
   const { isAuthenticated, isLoading, login } = useAuth();
 
-  const pathIsProtected = protectedRoutes.map(route => route.startsWith(pathname))[0];
+  const pathIsProtected = protectedRoutes.map(route => route.startsWith(pathname)).includes(true);
 
   useEffect(() => {
     if (!isLoading && !isAuthenticated && pathIsProtected) {
-      router.push("/");
+      // router.push("/");
       login();
     }
   }, [isLoading, isAuthenticated, pathIsProtected, router, login]);
 
-  if ((isLoading || !isAuthenticated) && pathIsProtected) {
+  if (pathIsProtected && (isLoading || !isAuthenticated)) {
     return <div>Loading...</div>;
   }
 

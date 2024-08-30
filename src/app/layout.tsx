@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   ],
   creator: "Tokiniaina",
   robots: {
-    index: false,
+    index: true,
     follow: true,
     nocache: true,
     googleBot: {
