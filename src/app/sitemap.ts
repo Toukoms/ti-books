@@ -1,11 +1,12 @@
 import { links } from "@/constants/links";
 import { books } from "@/constants/books";
 import type { MetadataRoute } from "next";
+import { getStoryBooks } from "@/lib/firestore/story-books";
 
 const fetchBooks = async (): Promise<IBook[]> => {
-  return new Promise((resolve) => {
-    resolve(books)
-  })}
+  const books = await getStoryBooks() || []
+  return books
+}
 
 const fetchLinks = async (): Promise<typeof links> => {
   return new Promise((resolve) => {

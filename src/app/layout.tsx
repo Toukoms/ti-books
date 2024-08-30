@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import AuthProvider from "@/providers/auth-provider";
+import PrivateRoute from "@/components/layout/protected-route";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -35,6 +36,22 @@ export const metadata: Metadata = {
     { name: "Tsito" },
   ],
   creator: "Tokiniaina",
+  robots: {
+    index: false,
+    follow: true,
+    nocache: true,
+    googleBot: {
+      index: true,
+      follow: false,
+      noimageindex: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  verification: {
+    google: "rgvlH4rZdKcgcztMt4XGTQDkwUlySNrdNikyGvcUdI4"
+  }
 };
 
 export default function RootLayout({
@@ -42,6 +59,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const protectedRoutes = ["/stories", "/blog"];
   return (
     <html lang="en">
       <body
@@ -50,11 +68,13 @@ export default function RootLayout({
           "flex flex-col justify-between h-full min-h-screen"
         )}
       >
-        {/* <AuthProvider> */}
-          <Header />
-          <main className="flex-1 mt-20 mb-8">{children}</main>
-          <Footer />
-        {/* </AuthProvider> */}
+        <AuthProvider>
+          <PrivateRoute protectedRoutes={protectedRoutes}>
+            <Header />
+            <main className="flex-1 mt-20 mb-8">{children}</main>
+            <Footer />
+          </PrivateRoute>
+        </AuthProvider>
         <Analytics />
         <SpeedInsights />
       </body>
