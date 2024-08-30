@@ -11,7 +11,6 @@ import {
   SheetDescription,
 } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
-import SignInButton from "../ui/custom/sign-in-button";
 import { buttonVariants } from "../ui/button";
 
 function Header() {
@@ -22,7 +21,15 @@ function Header() {
       </Link>
       <NavLinks className="hidden sm:flex" />
       <div className="flex items-center gap-2">
-        <SignInButton />
+      <Link
+          href="/stories"
+          className={cn(
+            buttonVariants(),
+            "rounded-full px-6 bg-green-800 hover:bg-green-700 transition-colors duration-300"
+          )}
+        >
+          Explore
+        </Link>
         <span className="sm:hidden">
           <Sheet>
             <SheetTrigger
