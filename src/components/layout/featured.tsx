@@ -33,7 +33,7 @@ const FeaturedStories = async () => {
                   {story.synopsis}
                 </p>
                 <Link
-                  href={`/explore/${story.id}`}
+                  href={`/stories/${story.id}`}
                   className="font-semibold text-green-500 hover:text-green-700"
                 >
                   Read More
