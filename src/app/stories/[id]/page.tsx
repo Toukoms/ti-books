@@ -1,15 +1,21 @@
 import BookDetail from "@/components/ui/custom/book-detail";
-import { books } from "@/constants/books";
+import { getStoryBooks } from "@/lib/firestore/story-books";
 
-export function generateStaticParams() {
-  return books.map(book => book.id)
+export async function generateStaticParams() {
+  const storyBooks = await getStoryBooks();
+  return storyBooks?.map(book => book.id)!;
 }
 
-const BookDetailPage = ({ params }: { params: { id?: string } }) => {
+const BookDetailPage = async ({ params }: { params: { id?: string } }) => {
+  const books = await getStoryBooks();
+  if (!books || books.length === 0) throw new Error("Error collecting storybooks");
+  
+  const book = books.find(book => book.id === params.id);
+  if (!book) throw new Error(`No storybook with id=${params.id} found`);
 
   return (
     <main className="max-w-screen-lg mx-auto mt-4">
-      <BookDetail id={params.id!} />
+      <BookDetail book={book} />
       
       {/* <div className="w-2/3 p-4 mx-auto mt-4 mb-8">
         <h2 className="ml-4 text-2xl font-bold">Glossary</h2>

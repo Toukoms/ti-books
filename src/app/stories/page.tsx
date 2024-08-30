@@ -3,15 +3,6 @@ import SearchBar from "@/components/ui/custom/search-bar";
 import GenreSelection from "@/components/ui/custom/genre-selection";
 import BooksPagination from "@/components/ui/custom/books-pagination";
 import { getStoryBooks } from "@/lib/firestore/story-books";
-import { unstable_cache } from "next/cache";
-
-const getStoryBooksCached = unstable_cache(
-  async () => {
-    return await getStoryBooks()
-  },
-  ['story-books'],
-  { revalidate: 3600, tags: ['story-books'] }
-)
 
 const filterBooks = (
   books: IBook[],
@@ -40,7 +31,9 @@ const ExplorePage = async ({
     Number(searchParams?.page) || 1;
   const searchQuery = searchParams?.query || "";
   const genreFilter = searchParams?.genre || "All";
-  const books = await getStoryBooksCached();
+  const books = await getStoryBooks();
+  if (!books || books.length === 0) throw new Error("Error collecting storybooks");
+
   const filteredBooks = filterBooks(
     books,
     searchQuery,
@@ -52,8 +45,6 @@ const ExplorePage = async ({
 
   // console.log(filterBooks);
   // console.log(searchQuery);
-
-  if (filteredBooks.length === 0) throw new Error("Error collecting storybooks");
 
   return (
     <div className="max-w-screen-xl px-4 mx-auto mt-4 mb-4 2xl:max-w-screen-2xl">

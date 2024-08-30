@@ -1,8 +1,11 @@
-import { books } from "@/constants/books";
+import { getStoryBooks } from "@/lib/firestore/story-books";
 import Image from "next/image";
 import Link from "next/link";
 
-const FeaturedStories = () => {
+const FeaturedStories = async () => {
+  const books = await getStoryBooks()
+  if (!books) return; 
+
   const bestStories = books.slice(0, 3);
 
   return (

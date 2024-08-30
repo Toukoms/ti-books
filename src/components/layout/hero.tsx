@@ -48,7 +48,7 @@ const Hero = () => {
         </p>
         <p className="flex items-center m-0 text-sm font-semibold text-gray-600">It&apos;s Free&nbsp;<DollarSignIcon className="inline" size={16}/></p>
         <Link
-          href={"/explore"}
+          href={"/stories"}
           className={cn(
             buttonVariants({ size: "lg" }),
             "px-12 py-6 text-xl rounded-full w-fit transition-colors duration-300"

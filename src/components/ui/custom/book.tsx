@@ -16,7 +16,7 @@ const Book = (book: IBook) => {
   return (
     <Link
       className="w-full overflow-hidden bg-white border rounded-lg shadow-md h-80 group hover:cursor-pointer"
-      href={`/explore/${book.id}`}
+      href={`/stories/${book.id}`}
     >
       <div className="relative overflow-hidden h-3/5">
         {loading ? (

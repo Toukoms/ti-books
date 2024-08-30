@@ -8,3 +8,11 @@ interface IBook {
   synopsis: string,
   link: string,
 }
+
+type AuthContextType = {
+  user: unknown | null,
+  login: () => Promise<void>,
+  logout: () => void,
+  isAuthenticated: boolean,
+  isLoading: boolean,
+};

@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import NavLinks from "./client/nav-links";
-import { buttonVariants } from "../ui/button";
 import { cn } from "@/lib/utils";
 import {
   Sheet,
@@ -12,6 +11,8 @@ import {
   SheetDescription,
 } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
+import SignInButton from "../ui/custom/sign-in-button";
+import { buttonVariants } from "../ui/button";
 
 function Header() {
   return (
@@ -21,15 +22,7 @@ function Header() {
       </Link>
       <NavLinks className="hidden sm:flex" />
       <div className="flex items-center gap-2">
-        <Link
-          href="/explore"
-          className={cn(
-            buttonVariants(),
-            "rounded-full px-6 bg-green-800 hover:bg-green-700 transition-colors duration-300"
-          )}
-        >
-          Explore
-        </Link>
+        <SignInButton />
         <span className="sm:hidden">
           <Sheet>
             <SheetTrigger

@@ -4,15 +4,16 @@ import "./globals.css";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import { cn } from "@/lib/utils";
-import { Analytics } from '@vercel/analytics/react';
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import AuthProvider from "@/providers/auth-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  generator: 'Ti-Books',
-  applicationName: 'Ti-Books',
-  referrer: 'origin-when-cross-origin',
+  generator: "Ti-Books",
+  applicationName: "Ti-Books",
+  referrer: "origin-when-cross-origin",
   title: {
     default: "Ti-Books | Angano Malagasy in English - Learn & Explore",
     template: "%s |Ti-Books - Angano Malagasy in English",
@@ -33,7 +34,7 @@ export const metadata: Metadata = {
     { name: "Sarindra" },
     { name: "Tsito" },
   ],
-  creator: 'Tokiniaina',
+  creator: "Tokiniaina",
 };
 
 export default function RootLayout({
@@ -49,9 +50,11 @@ export default function RootLayout({
           "flex flex-col justify-between h-full min-h-screen"
         )}
       >
-        <Header />
-        <main className="flex-1 mt-20 mb-8">{children}</main>
-        <Footer />
+        {/* <AuthProvider> */}
+          <Header />
+          <main className="flex-1 mt-20 mb-8">{children}</main>
+          <Footer />
+        {/* </AuthProvider> */}
         <Analytics />
         <SpeedInsights />
       </body>

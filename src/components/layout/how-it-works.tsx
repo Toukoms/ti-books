@@ -46,7 +46,7 @@ const HowItWorks = () => {
 
         {/* Call to Action */}
         <div className="text-center mt-12">
-          <Link href="/explore" className={cn(buttonVariants({size: "lg"}))}>
+          <Link href="/stories" className={cn(buttonVariants({size: "lg"}))}>
             Start Exploring Stories
           </Link>
         </div>
