@@ -1,6 +1,6 @@
 "use client"
 import { AuthContext } from "@/contexts/auth-context";
-import { auth } from "@/lib/firebase-config";
+// import { auth } from "@/lib/firebase-config";
 import {
   GoogleAuthProvider,
   signOut,
@@ -18,33 +18,33 @@ const useAuthSource = (): AuthContextType => {
   const router = useRouter()
 
   const login = async () => {
-    const provider = new GoogleAuthProvider();
-    const result = await signInWithPopup(auth, provider);
-    if (result.user) {
-      router.push("/stories");
-    }
+    // const provider = new GoogleAuthProvider();
+    // const result = await signInWithPopup(auth, provider);
+    // if (result.user) {
+    //   router.push("/stories");
+    // }
   };
 
   const logout = () => {
-    signOut(auth);
-    router.push("/");
+    // signOut(auth);
+    // router.push("/");
   };
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth,(user) => {
-      console.log(user);
-      if (user) {
-        setUser(user);
-        setIsAuthenticated(true);
-      } else {
-        setUser(null);
-        setIsAuthenticated(false);
-      }
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 3000);
-    });
-    return unsubscribe; // Clean up subscription when component unmounts
+    // const unsubscribe = onAuthStateChanged(auth,(user) => {
+    //   console.log(user);
+    //   if (user) {
+    //     setUser(user);
+    //     setIsAuthenticated(true);
+    //   } else {
+    //     setUser(null);
+    //     setIsAuthenticated(false);
+    //   }
+    //   setTimeout(() => {
+    //     setIsLoading(false);
+    //   }, 3000);
+    // });
+    // return unsubscribe; // Clean up subscription when component unmounts
   }, []);
 
   return {
