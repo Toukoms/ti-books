@@ -9,7 +9,7 @@ const faqs = [
   {
     question: "What is Ti-Books?",
     answer:
-      "Ti-Books is a platform dedicated to sharing Malagasy folktales (Angano) translated into English. Our interactive storybooks aim to promote Malagasy culture and assist english learners in improving their English skills.",
+      "Ti-Books is a platform dedicated to share Malagasy folktales (Angano) translated into English. Our interactive storybooks aim to promote Malagasy culture and assist english learners in improving their English skills.",
   },
   {
     question: "How can I access the storybooks?",
@@ -24,7 +24,7 @@ const faqs = [
   {
     question: "How can I contact support?",
     answer:
-      "If you need assistance, you can contact us through the 'Contact Us' section on our website.",
+      "If you need assistance, you can contact us through the 'Contact' section on our website.",
   },
   {
     question: "Can I contribute a story to Ti-Books?",

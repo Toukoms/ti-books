@@ -45,7 +45,7 @@ const BlogPage = () => {
         </div>
 
         {/* Call to Action */}
-        <div className="text-center mt-12">
+        <div className="text-center mt-12 hidden">
           <Link href="/blog" className="text-white bg-green-500 hover:bg-green-600 font-semibold py-3 px-6 rounded-lg">
             Explore More Articles
           </Link>
