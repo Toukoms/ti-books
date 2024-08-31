@@ -13,7 +13,7 @@ const HowItWorks = () => {
         <div className="text-center mb-12">
           <h2 className="text-4xl font-semibold text-gray-800">How It Works</h2>
           <p className="mt-4 text-gray-600 text-lg max-w-2xl mx-auto">
-            Discover how Ti-Books brings Malagasy Angano to life through interactive and engaging digital storybooks.
+            Discover how Ti-Books brings Angano Malagasy to life through interactive and engaging digital storybooks.
           </p>
         </div>
 
@@ -23,7 +23,7 @@ const HowItWorks = () => {
             <FaBookOpen className="text-6xl text-primary mx-auto mb-4" />
             <h3 className="text-2xl font-semibold text-gray-800">1. Choose a Story</h3>
             <p className="mt-2 text-gray-600">
-              Browse our collection of translated Malagasy Angano and choose a story that intrigues you.
+              Browse our collection of translated Angano Malagasy and choose a story that intrigues you.
             </p>
           </div>
 

@@ -1,4 +1,7 @@
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import Image from "next/image";
+import Link from "next/link";
 
 const AboutPage = () => {
   // TODO: Add our own team
@@ -17,7 +20,8 @@ const AboutPage = () => {
       name: "Mamy Raveloson",
       role: "Content Writer",
       image: "/images/mamy.jpg",
-    }]
+    },
+  ];
 
   return (
     <section className="max-w-screen-lg mx-auto bg-white pt-4 pb-16">
@@ -56,7 +60,9 @@ const AboutPage = () => {
               {teamMembers.map((member, index) => (
                 <div key={index} className="text-center">
                   <Image
-                    src={"/images/scene-with-young-children-playing-nature-outdoors.jpg"}
+                    src={
+                      "/images/scene-with-young-children-playing-nature-outdoors.jpg"
+                    }
                     alt={member.name}
                     width={1000}
                     height={1000}
@@ -75,6 +81,19 @@ const AboutPage = () => {
           <div>
             <h3 className="text-3xl font-semibold text-gray-800">Our Story</h3>
             <p className="mt-4 text-gray-600 text-lg">
+              We are{" "}
+              <Link
+                href={
+                  "https://www.passerellesnumeriques.org/fr/nos-actions/madagascar/"
+                }
+                target="_blank"
+                className={cn(buttonVariants({variant: "link"}), "text-lg p-0 inline")}
+              >
+                Passerelles Numeriques Madagascar&apos;s
+              </Link>{" "}
+              students passionate about technologies and Malagasy culture.
+            </p>
+            <p className="text-gray-600 text-lg">
               Ti-Books was born out of a deep love for Malagasy folklore and a
               desire to share these beautiful stories with the world. Our team,
               a group of passionate creators, came together with the goal of
