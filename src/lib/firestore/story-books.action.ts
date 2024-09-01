@@ -66,4 +66,16 @@ const getStoryBookById = unstable_cache(
   { revalidate: 30, tags: ["story-book", "get-by-id"] }
 );
 
-export { getStoryBooks, getStoryBookBy, getStoryBookById };
+const incrementStoryBookViews = async (id: string) => {
+  const docRef = doc(db, "storybooks", id);
+  const updatedDoc = await updateDoc(docRef, {
+    views: increment(1),
+  });
+};
+
+export {
+  getStoryBooks,
+  getStoryBookBy,
+  getStoryBookById,
+  incrementStoryBookViews,
+};
