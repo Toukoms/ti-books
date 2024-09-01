@@ -1,4 +1,4 @@
-import LoadingButton from "@/components/ui/loading-button";
+import LoadingButton from "@/components/ui/custom/loading-button";
 import Link from "next/link";
 
 const ContactUs = () => {
@@ -83,7 +83,18 @@ const ContactUs = () => {
                   ></textarea>
                 </div>
               </div>
-              <LoadingButton>Send</LoadingButton>
+              <LoadingButton
+                size={"lg"}
+                onClick={() => {
+                  const contactForm: HTMLFormElement = document.getElementById(
+                    "contact-form"
+                  ) as HTMLFormElement;
+                  contactForm.submit();
+                  contactForm.reset();
+                }}
+              >
+                Send
+              </LoadingButton>
             </form>
           </div>
 
