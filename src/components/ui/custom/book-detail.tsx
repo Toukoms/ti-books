@@ -94,7 +94,7 @@ const StorybookDetail: React.FC<StorybookDetailProps> = ({ book }) => {
           <Skeleton className="w-16 h-4" />
         ) : (
           <LoadingButton
-            onClick={handleReadBook}
+            onBtnClick={handleReadBook}
             className="flex items-center gap-1"
           >
             Read <MoveUpRight size={12} />

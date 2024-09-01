@@ -6,10 +6,10 @@ import { VariantProps } from "class-variance-authority";
 
 export interface LoadingButtonProps extends React.PropsWithChildren, VariantProps<typeof buttonVariants> {
   className?: string;
-  onClick: (event?: React.FormEvent<HTMLButtonElement>) => void;
+  onBtnClick: (event?: React.FormEvent<HTMLButtonElement>) => void;
 }
 
-const LoadingButton = ({children, className, onClick, ...props }: LoadingButtonProps) => {
+const LoadingButton = ({children, className, onBtnClick: onClick, ...props }: LoadingButtonProps) => {
   const [loading, setLoading] = useState(false);
 
   return (
