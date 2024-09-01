@@ -6,7 +6,6 @@ import Footer from "@/components/layout/footer";
 import { cn } from "@/lib/utils";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import AuthProvider from "@/providers/auth-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -58,7 +57,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const protectedRoutes = ["/stories", "/blog"];
+  // const protectedRoutes = ["/stories", "/blog"];
   return (
     <html lang="en">
       <body

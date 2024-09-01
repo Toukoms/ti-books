@@ -1,12 +1,11 @@
-import { getStoryBooks } from "@/lib/firestore/story-books";
+import { getBestStoryBooks } from "@/lib/firestore/story-books.action";
+import { nFormatter } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 
 const FeaturedStories = async () => {
-  const books = await getStoryBooks()
-  if (!books) return; 
-
-  const bestStories = books.slice(0, 3);
+  const bestStories = await getBestStoryBooks();
+  if (!bestStories) return;
 
   return (
     <section className="py-16 bg-accent text-accent-foreground">
@@ -28,13 +27,16 @@ const FeaturedStories = async () => {
                 height={1000}
               />
               <div className="p-6">
-                <h3 className="mb-2 text-xl font-bold">{story.title}</h3>
+                <h3 className="text-xl font-bold line-clamp-2">{story.title}</h3>
+                <p className="mb-4 text-sm text-gray-400 font-semibold">
+                  {`${nFormatter(story.views)} views`}
+                </p>
                 <p className="mb-4 text-gray-700 line-clamp-3">
                   {story.synopsis}
                 </p>
                 <Link
                   href={`/stories/${story.id}`}
-                  className="font-semibold text-green-500 hover:text-green-700"
+                  className="font-semibold text-green-500 hover:text-green- hover:underline"
                 >
                   Read More
                 </Link>

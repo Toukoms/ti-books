@@ -2,7 +2,7 @@ import Book from "@/components/ui/custom/book";
 import SearchBar from "@/components/ui/custom/search-bar";
 import GenreSelection from "@/components/ui/custom/genre-selection";
 import BooksPagination from "@/components/ui/custom/books-pagination";
-import { getStoryBooks } from "@/lib/firestore/story-books";
+import { getStoryBooks } from "@/lib/firestore/story-books.action";
 
 const filterBooks = (
   books: IBook[],

@@ -7,6 +7,7 @@ interface IBook {
   image: string,
   synopsis: string,
   link: string,
+  views: number,
 }
 
 type AuthContextType = {

@@ -1,5 +1,5 @@
 import BookDetail from "@/components/ui/custom/book-detail";
-import { getStoryBooks } from "@/lib/firestore/story-books";
+import { getStoryBookById, getStoryBooks } from "@/lib/firestore/story-books.action";
 
 export async function generateStaticParams() {
   const storyBooks = await getStoryBooks();
@@ -7,10 +7,8 @@ export async function generateStaticParams() {
 }
 
 const BookDetailPage = async ({ params }: { params: { id?: string } }) => {
-  const books = await getStoryBooks();
-  if (!books || books.length === 0) throw new Error("Error collecting storybooks");
   
-  const book = books.find(book => book.id === params.id);
+  const book = await getStoryBookById(params.id!);
   if (!book) throw new Error(`No storybook with id=${params.id} found`);
 
   return (
