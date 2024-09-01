@@ -1,4 +1,4 @@
-import { getStoryBooks } from "@/lib/firestore/story-books";
+import { getStoryBooks } from "@/lib/firestore/story-books.action";
 import Image from "next/image";
 import Link from "next/link";
 
