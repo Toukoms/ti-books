@@ -1,5 +1,4 @@
 import { links } from "@/constants/links";
-import { books } from "@/constants/books";
 import type { MetadataRoute } from "next";
 import { getStoryBooks } from "@/lib/firestore/story-books.action";
 

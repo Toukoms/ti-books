@@ -58,7 +58,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const protectedRoutes = ["/stories", "/blog"];
+  // const protectedRoutes = ["/stories", "/blog"];
   return (
     <html lang="en">
       <body
