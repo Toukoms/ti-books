@@ -1,6 +1,6 @@
 const Loading = () => {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+    <div className="flex flex-col items-center justify-center min-h-screen">
       {/* Flipping Book Animation */}
       <div className="relative w-16 h-16 mb-4">
         <div className="absolute top-0 left-0 w-full h-full delay-150 bg-green-400 animate-flip"></div>
