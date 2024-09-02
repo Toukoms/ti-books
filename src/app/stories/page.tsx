@@ -3,6 +3,11 @@ import SearchBar from "@/components/ui/custom/search-bar";
 import GenreSelection from "@/components/ui/custom/genre-selection";
 import BooksPagination from "@/components/ui/custom/books-pagination";
 import { getStoryBooks } from "@/lib/firestore/story-books.action";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Stories"
+}
 
 const filterBooks = (
   books: IBook[],

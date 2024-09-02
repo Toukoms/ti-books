@@ -1,6 +1,10 @@
-"use client"
-import LoadingButton from "@/components/ui/custom/loading-button";
 import Link from "next/link";
+import type { Metadata } from "next";
+import SendMessageBtn from "@/components/ui/custom/send-btn";
+
+export const metadata: Metadata = {
+  title: "Contact"
+}
 
 const ContactUs = () => {
   return (
@@ -84,18 +88,7 @@ const ContactUs = () => {
                   ></textarea>
                 </div>
               </div>
-              <LoadingButton
-                size={"lg"}
-                onBtnClick={() => {
-                  const contactForm: HTMLFormElement = document.getElementById(
-                    "contact-form"
-                  ) as HTMLFormElement;
-                  contactForm.submit();
-                  contactForm.reset();
-                }}
-              >
-                Send
-              </LoadingButton>
+              <SendMessageBtn/>
             </form>
           </div>
 
