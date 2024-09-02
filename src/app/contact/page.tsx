@@ -1,3 +1,4 @@
+"use client"
 import LoadingButton from "@/components/ui/custom/loading-button";
 import Link from "next/link";
 import type { Metadata } from "next";
@@ -90,7 +91,7 @@ const ContactUs = () => {
               </div>
               <LoadingButton
                 size={"lg"}
-                onClick={() => {
+                onBtnClick={() => {
                   const contactForm: HTMLFormElement = document.getElementById(
                     "contact-form"
                   ) as HTMLFormElement;
@@ -111,10 +112,10 @@ const ContactUs = () => {
             <p className="text-gray-600 mb-4">
               Email:{" "}
               <Link
-                href="mailto:tokiniaina.rahajanirina@passerellesnumeriques.org"
+                href="mailto:contactti-books.com@proton.me"
                 className="text-green-600"
               >
-                tokiniaina.rahajanirina@passerellesnumeriques.org
+                contactti-books.com@proton.me
               </Link>
             </p>
             <p className="text-gray-600">
