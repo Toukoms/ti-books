@@ -17,7 +17,7 @@ const ErrorPage = ({
   }, [error]);
 
   return (
-    <div className="flex flex-col items-center justify-center text-green-600 bg-white min-h-96">
+    <div className="max-w-screen-lg flex flex-col items-center justify-center text-green-600 bg-white min-h-96">
       <div className="flex items-center gap-4 mb-4">
         <FaBookOpen className="w-24 h-24 text-green-600" />
         <FaExclamationTriangle className="w-24 h-24 text-red-600" />

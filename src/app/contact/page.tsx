@@ -1,5 +1,10 @@
 import LoadingButton from "@/components/ui/custom/loading-button";
 import Link from "next/link";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Contact"
+}
 
 const ContactUs = () => {
   return (
