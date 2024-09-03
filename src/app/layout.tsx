@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   referrer: "origin-when-cross-origin",
   title: {
     default: "Ti-Books | Angano Malagasy in English - Learn & Explore",
-    template: "%s |Ti-Books - Angano Malagasy in English",
+    template: "%s | Ti-Books - Angano Malagasy in English",
   },
   description:
     "Discover the beauty of Angano Malagasy with Ti-Books. Enjoy English translations of Malagasy fairy tales, perfect for learners and culture lovers.",
