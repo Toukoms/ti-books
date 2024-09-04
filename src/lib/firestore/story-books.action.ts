@@ -50,7 +50,7 @@ const getBestStoryBooks = unstable_cache(
     return bestStoryBooks;
   },
   ["best-story-books"],
-  { revalidate: 3600, tags: ["best-story-books"] }
+  { revalidate: 360, tags: ["best-story-books"] }
 );
 
 const getStoryBookBy = async (key: string, value: string) => {
