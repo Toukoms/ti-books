@@ -15,7 +15,7 @@ import { buttonVariants } from "../ui/button";
 
 function Header() {
   return (
-    <header className="fixed z-50 top-0 left-1/2 -translate-x-1/2 flex justify-between rounded-xl items-center px-4 h-16 w-[calc(100vw-2rem)] md:w-[calc(100vw-3rem)] lg:w-[calc(100vw-4rem)] mt-2 border border-primary/10 shadow-md bg-primary/20 backdrop-blur-xl">
+    <header className="fixed z-50 top-0 left-1/2 -translate-x-1/2 flex justify-between rounded-xl items-center px-2 sm:px-4 h-16 w-[calc(100vw-1rem)] md:w-[calc(100vw-2rem)] lg:w-[calc(100vw-4rem)] mt-2 border border-primary/10 shadow-md bg-primary/20 backdrop-blur-xl">
       <Link href="/">
         <Image src="/logo.png" alt="Logo Ti-Books" width={160} height={40} />
       </Link>
