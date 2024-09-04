@@ -138,7 +138,7 @@ const Footer = () => {
           <p>© 2024 Ti-Books. All rights reserved.</p>
           <p>
             <Link
-              href="/privacy-policy"
+              href="/privacy"
               className={cn(buttonVariants({ variant: "link" }))}
             >
               Privacy Policy
