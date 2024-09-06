@@ -36,7 +36,7 @@ const Hero = () => {
             English.
           </span>
           <span className="whitespace-normal md:whitespace-nowrap">
-            &nbsp;Explore beautifully fairy tales through our interactive
+            &nbsp;Explore beautiful fairy tales through our interactive
             storybooks,
           </span>
           <span className="whitespace-normal md:whitespace-nowrap">
