@@ -23,10 +23,18 @@ const Footer = () => {
             <h4 className="mb-2 ml-4 text-lg font-semibold underline">
               Our Mission:
             </h4>
-            <p className="ml-4 text-sm">
+            <p className="ml-4 mb-4 text-sm">
               Promoting Angano Malagasy and enhancing English learning through
               immersive, interactive storybooks.
             </p>
+            <p className="text-gray-800 text-sm w-min ml-4 mb-2 underline whitespace-nowrap">In collaboration with</p>
+            <Image
+              src="/logo-pnm.png"
+              alt="Logo Passerelles Numériques Madagascar"
+              width={120}
+              height={30}
+              className="ml-4"
+            />
           </div>
 
           {/* Quick Navigation Links */}
