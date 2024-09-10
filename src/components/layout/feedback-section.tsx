@@ -48,18 +48,18 @@ const FeedbackSection = async ({ bookId }: { bookId?: string }) => {
                   <User size={64} />
                 </div>
                 <div className="flex flex-col justify-center h-12 gap-1">
-                  <div className="flex items-center gap-1 max-w-24 text-ellipsis">
-                    <span className="text-lg font-medium leading-3">
+                  <div className="flex items-center gap-1">
+                    <span className="text-lg font-medium leading-4 max-w-32 line-clamp-1">
                       {feedback.name || "Anonymous"}
                     </span>
-                    <span className="text-sm leading-3 text-gray-400">
+                    <span className="text-sm leading-4 text-gray-400 whitespace-nowrap">
                       {" "}
                       • {formattedDate}
                     </span>
                   </div>
                   <Link
                     href={`mailto:${feedback.email}`}
-                    className="text-sm leading-3 text-gray-600 hover:underline"
+                    className="text-sm leading-4 text-gray-600 hover:underline max-w-48 line-clamp-1"
                   >
                     {feedback.email}
                   </Link>

@@ -67,22 +67,18 @@ const getStoryBookBy = async (key: string, value: string) => {
   return storyBooks;
 };
 
-const getStoryBookById = unstable_cache(
-  async (id: string) => {
-    const docRef = doc(db, "storybooks", id);
-    const docSnap = await getDoc(docRef);
-    if (!docSnap.exists()) {
-      throw new Error(`Storybook with id=${id} not found.`);
-    }
-    const storyBook: IBook = {
-      id: docSnap.id,
-      ...(docSnap.data() as Omit<IBook, "id">),
-    };
-    return storyBook;
-  },
-  ["story-book", "get-by-id"],
-  { revalidate: 30, tags: ["story-book", "get-by-id"] }
-);
+const getStoryBookById = async (id: string) => {
+  const docRef = doc(db, "storybooks", id);
+  const docSnap = await getDoc(docRef);
+  if (!docSnap.exists()) {
+    throw new Error(`Storybook with id=${id} not found.`);
+  }
+  const storyBook: IBook = {
+    id: docSnap.id,
+    ...(docSnap.data() as Omit<IBook, "id">),
+  };
+  return storyBook;
+};
 
 const incrementStoryBookViews = async (id: string) => {
   const docRef = doc(db, "storybooks", id);

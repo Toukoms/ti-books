@@ -1,7 +1,7 @@
 import { addFeedback } from "@/lib/firestore/feedbacks.action";
-import { Button } from "../button";
 import { Input } from "../input";
 import { Textarea } from "../textarea";
+import FormButton from "./form-button";
 
 const InputFeedback = ({ bookId }: { bookId: string }) => {
   return (
@@ -26,9 +26,9 @@ const InputFeedback = ({ bookId }: { bookId: string }) => {
         rows={3}
         required
       />
-      <Button type="submit"  className="px-8 mt-4">
+      <FormButton  className="px-8 mt-4">
         Send
-      </Button>
+      </FormButton>
     </form>
   );
 };
