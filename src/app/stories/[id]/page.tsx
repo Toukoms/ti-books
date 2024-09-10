@@ -20,10 +20,10 @@ export async function generateMetadata({
   };
 }
 
-export async function generateStaticParams() {
-  const storyBooks = await getStoryBooks();
-  return storyBooks?.map((book) => book.id)!;
-}
+// export async function generateStaticParams() {
+//   const storyBooks = await getStoryBooks();
+//   return storyBooks?.map((book) => book.id)!;
+// }
 
 const BookDetailPage = async ({ params }: { params: { id?: string } }) => {
   const book = await getStoryBookById(params.id!);
