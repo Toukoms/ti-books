@@ -44,22 +44,22 @@ const FeedbackSection = async ({ bookId }: { bookId?: string }) => {
               className="p-4 mx-4 my-6 border rounded-md bg-gray-50"
             >
               <div className="flex items-center gap-2">
-                <div className="inline-flex items-center justify-center w-12 p-2 overflow-hidden text-white bg-gray-800 rounded-full aspect-square">
+                <div className="inline-flex items-center justify-center w-16 p-2 overflow-hidden text-white bg-gray-800 rounded-full aspect-square">
                   <User size={64} />
                 </div>
-                <div className="flex flex-col justify-center h-12 gap-1">
-                  <div className="flex items-center gap-1">
-                    <span className="text-lg font-medium leading-4 max-w-32 line-clamp-1">
+                <div className="flex flex-col pt-1">
+                  <div className="flex items-center h-8 gap-1">
+                    <span className="text-lg font-medium max-w-32 line-clamp-1">
                       {feedback.name || "Anonymous"}
                     </span>
-                    <span className="text-sm leading-4 text-gray-400 whitespace-nowrap">
+                    <span className="text-sm text-gray-400 whitespace-nowrap">
                       {" "}
                       • {formattedDate}
                     </span>
                   </div>
                   <Link
                     href={`mailto:${feedback.email}`}
-                    className="text-sm leading-4 text-gray-600 hover:underline max-w-48 line-clamp-1"
+                    className="h-6 text-sm text-gray-600 hover:underline max-w-48 line-clamp-1"
                   >
                     {feedback.email}
                   </Link>

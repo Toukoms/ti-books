@@ -17,6 +17,7 @@ const InputFeedback = ({ bookId }: { bookId: string }) => {
       />
       <Input
         name="email"
+        type="email"
         placeholder="Email (optional)"
         className="w-full mb-2"
       />
