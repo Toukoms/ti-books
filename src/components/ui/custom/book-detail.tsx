@@ -9,19 +9,28 @@ import { cn, nFormatter } from "@/lib/utils";
 import LoadingButton from "./loading-button";
 import { incrementStoryBookViews } from "@/lib/firestore/story-books.action";
 
-type StorybookDetailProps = {
-  book: IBook;
-};
-
-const StorybookDetail: React.FC<StorybookDetailProps> = ({ book }) => {
+const StorybookDetail: React.FC<IBook> = (props) => {
+  const {
+    id,
+    title,
+    link,
+    image,
+    synopsis,
+    author,
+    genre,
+    publicationDate,
+    views,
+  } = props;
   const [loading, setLoading] = useState(true);
 
   const handleReadBook = () => {
-    setTimeout(async () => {await incrementStoryBookViews(book.id)}, 3100);
-    if (book.link) {
-      window.open(book.link, "_blank");
+    setTimeout(async () => {
+      await incrementStoryBookViews(id);
+    }, 3100);
+    if (link) {
+      window.open(link, "_blank");
     } else {
-      alert("No link available for this book.");
+      alert("No link available for this ");
     }
   };
 
@@ -32,7 +41,7 @@ const StorybookDetail: React.FC<StorybookDetailProps> = ({ book }) => {
   }, []);
 
   return (
-    <div className="max-w-screen-md px-6 pt-4 pb-8 mx-auto mb-16 bg-white border rounded-lg shadow-md">
+    <div className="max-w-screen-md p-4 mx-auto bg-white rounded-lg">
       <div className="mb-4">
         <Link
           href="/stories"
@@ -47,8 +56,8 @@ const StorybookDetail: React.FC<StorybookDetailProps> = ({ book }) => {
           <Skeleton className="absolute top-0 left-0 w-full h-full bg-slate-100" />
         ) : (
           <Image
-            src={book.image || ""}
-            alt={book.title || ""}
+            src={image || ""}
+            alt={title || ""}
             layout="fill"
             objectFit="cover"
             className="rounded-lg"
@@ -56,38 +65,34 @@ const StorybookDetail: React.FC<StorybookDetailProps> = ({ book }) => {
         )}
       </div>
       <h2 className="mb-2 text-2xl font-bold">
-        {loading ? <Skeleton className="w-3/4 h-6" /> : book.title}
-        <span className="ml-2 text-sm text-primary font-semibold">
+        {loading ? <Skeleton className="w-3/4 h-6" /> : title}
+        <span className="ml-2 text-sm font-semibold text-primary">
           {loading ? (
             <Skeleton className="w-12 h-4" />
           ) : (
-            `- ${nFormatter(book.views)} views`
+            `- ${nFormatter(views)} views`
           )}
         </span>
       </h2>
       <Badge
         variant={"outline"}
         className={cn("border mb-4", {
-          "text-horror border-horror": book.genre === "Horror",
-          "text-comedy border-comedy": book.genre === "Comedy",
-          "text-fantasy border-fantasy": book.genre === "Fantasy",
-          "text-drama border-drama": book.genre === "Drama",
+          "text-horror border-horror": genre === "Horror",
+          "text-comedy border-comedy": genre === "Comedy",
+          "text-fantasy border-fantasy": genre === "Fantasy",
+          "text-drama border-drama": genre === "Drama",
         })}
       >
-        {loading ? <Skeleton className="w-1/4 h-4" /> : book.genre}
+        {loading ? <Skeleton className="w-1/4 h-4" /> : genre}
       </Badge>
       <div className="mb-2 text-sm text-gray-600">
-        {loading ? (
-          <Skeleton className="w-1/2 h-4" />
-        ) : (
-          `Author: ${book.author}`
-        )}
+        {loading ? <Skeleton className="w-1/2 h-4" /> : `Author: ${author}`}
       </div>
       <div className="mb-2 text-sm text-gray-500">
-        {loading ? <Skeleton className="w-1/4 h-4" /> : book.publicationDate}
+        {loading ? <Skeleton className="w-1/4 h-4" /> : publicationDate}
       </div>
       <div className="mb-4 text-gray-700">
-        {loading ? <Skeleton className="w-full h-4 mb-2" /> : book.synopsis}
+        {loading ? <Skeleton className="w-full h-4 mb-2" /> : synopsis}
       </div>
       <div className="inline-block px-4 py-2 rounded">
         {loading ? (

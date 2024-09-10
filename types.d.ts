@@ -10,6 +10,15 @@ interface IBook {
   views: number,
 }
 
+interface IFeedback {
+  id: string,
+  bookId: string,
+  name?: string,
+  email?: string,
+  message: string,
+  creationDate?: unknown,
+}
+
 type AuthContextType = {
   user: unknown | null,
   login: () => Promise<void>,

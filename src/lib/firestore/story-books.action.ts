@@ -72,8 +72,7 @@ const getStoryBookById = unstable_cache(
     const docRef = doc(db, "storybooks", id);
     const docSnap = await getDoc(docRef);
     if (!docSnap.exists()) {
-      console.log(`Storybook with id=${id} not found.`);
-      return null;
+      throw new Error(`Storybook with id=${id} not found.`);
     }
     const storyBook: IBook = {
       id: docSnap.id,
