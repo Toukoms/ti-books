@@ -1,6 +1,6 @@
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { Linkedin, Phone } from "lucide-react";
@@ -106,10 +106,11 @@ const AboutPage = () => {
                     <Image
                       src={member.image}
                       alt={member.name}
-                      width={1000}
-                      height={1000}
+                      layout="fill"
+                      sizes=""
+                      objectFit="cover"
                       priority
-                      className="absolute top-0 left-0 z-10 w-full h-auto"
+                      className="z-10"
                     />
                     <div className="absolute top-0 left-0 z-20 flex items-center justify-center w-full h-full text-white transition-all duration-300 ease-in-out opacity-0 bg-gray-800/80 group-hover:opacity-100">
                       <Linkedin />

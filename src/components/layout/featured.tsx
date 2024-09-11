@@ -1,6 +1,6 @@
 import { getBestStoryBooks } from "@/lib/firestore/story-books.action";
 import { nFormatter } from "@/lib/utils";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 
 const FeaturedStories = async () => {
@@ -19,16 +19,21 @@ const FeaturedStories = async () => {
               key={index}
               className="overflow-hidden transition-colors duration-500 ease-in-out bg-white border border-transparent rounded-lg shadow-lg hover:border-primary"
             >
-              <Image
-                src={story.image}
-                alt={story.title}
-                className="object-cover w-full h-48"
-                width={1000}
-                height={1000}
-              />
+              <div className="relative w-full h-48 overflow-hidden">
+                <Image
+                  src={story.image}
+                  alt={story.title}
+                  layout="fill"
+                  sizes=""
+                  objectFit="cover"
+                  objectPosition="center"
+                />
+              </div>
               <div className="p-6">
-                <h3 className="text-xl font-bold line-clamp-2">{story.title}</h3>
-                <p className="mb-4 text-sm text-gray-400 font-semibold">
+                <h3 className="text-xl font-bold line-clamp-2">
+                  {story.title}
+                </h3>
+                <p className="mb-4 text-sm font-semibold text-gray-400">
                   {`${nFormatter(story.views)} views`}
                 </p>
                 <p className="mb-4 text-gray-700 line-clamp-3">

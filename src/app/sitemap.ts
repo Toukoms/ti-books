@@ -3,7 +3,7 @@ import type { MetadataRoute } from "next";
 import { getStoryBooks } from "@/lib/firestore/story-books.action";
 
 const fetchBooks = async (): Promise<IBook[]> => {
-  const books = await getStoryBooks() || []
+  const books = (await getStoryBooks()) || []
   return books
 }
 

@@ -1,5 +1,5 @@
 "use client";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
 import { Skeleton } from "../skeleton";

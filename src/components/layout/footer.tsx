@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { Separator } from "../ui/separator";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
@@ -34,14 +34,14 @@ const Footer = () => {
               href="https://www.passerellesnumeriques.org/fr/nos-actions/madagascar/"
               target="_blank"
               aria-label="passerelles numeriques madagascar link"
-              className="block py-3 pl-3 pr-6 ml-4 bg-gray-100 border border-gray-400 rounded-md w-fit"
+              className="relative block pt-3 pb-2 pl-3 pr-6 ml-4 bg-gray-100 border border-gray-400 rounded-md w-fit"
             >
               <Image
                 src="/logo-pnm.png"
                 alt="Logo Passerelles Numériques Madagascar"
-                className="w-auto h-auto"
                 width={120}
-                height={30}
+                height={48}
+                objectFit="contain"
                 priority
               />
             </Link>
