@@ -40,7 +40,7 @@ const AboutPage = () => {
     {
       name: "RAZANAMPANIRY Sarindra Emeline",
       role: "Designer & Book Creator",
-      image: "https://iili.io/dvN3MS2.jpg",
+      image: "https://iili.io/dvSL03N.jpg",
       linkedin: "https://www.linkedin.com/in/sarindra-razanampaniry-aa0040310/",
       tel: "+261 34 13 156 83",
     },
@@ -67,7 +67,7 @@ const AboutPage = () => {
         {/* Introduction Section */}
         <div className="py-8 mb-12 text-center text-white bg-gray-800">
           <h2 className="text-4xl font-semibold">About Ti-Books</h2>
-          <p className="max-w-2xl mx-auto mt-4 text-lg text-gray-400">
+          <p className="max-w-2xl px-4 mx-auto mt-4 text-lg text-gray-400">
             Ti-Books is dedicated to preserving and sharing the rich cultural
             heritage of Madagascar through interactive, English-translated
             storybooks.
@@ -80,7 +80,7 @@ const AboutPage = () => {
             <h3 className="text-3xl font-semibold text-gray-800">
               Our Mission & Vision
             </h3>
-            <p className="mt-4 text-lg text-gray-600">
+            <p className="mt-4 text-lg text-justify text-gray-600 md:text-left">
               Our mission is to bring Angano Malagasy to the world, promoting
               cultural understanding and supporting English language learning
               through engaging digital storybooks. We envision a world where
@@ -102,13 +102,14 @@ const AboutPage = () => {
                   target="_blank"
                   className="block p-4 pt-8 text-center border rounded-md shadow-md border-border/50 max-w-80 group"
                 >
-                  <div className="relative w-40 h-40 mx-auto mb-4 overflow-hidden border rounded-full">
+                  <div className="relative w-48 h-48 mx-auto mb-4 overflow-hidden border rounded-full">
                     <Image
                       src={member.image}
                       alt={member.name}
                       width={1000}
                       height={1000}
-                      className="absolute top-0 left-0 z-10 object-cover object-center w-full"
+                      priority
+                      className="absolute top-0 left-0 z-10 w-full h-auto"
                     />
                     <div className="absolute top-0 left-0 z-20 flex items-center justify-center w-full h-full text-white transition-all duration-300 ease-in-out opacity-0 bg-gray-800/80 group-hover:opacity-100">
                       <Linkedin />
@@ -130,7 +131,7 @@ const AboutPage = () => {
           {/* History/Inspiration Section */}
           <div>
             <h3 className="text-3xl font-semibold text-gray-800">Our Story</h3>
-            <p className="mt-4 text-lg text-gray-600">
+            <p className="mt-4 text-lg text-justify text-gray-600 md:text-left">
               We are{" "}
               <Link
                 href={
@@ -148,7 +149,7 @@ const AboutPage = () => {
               &apos;s students passionate about technologies and Malagasy
               culture.
             </p>
-            <p className="text-lg text-gray-600">
+            <p className="text-lg text-justify text-gray-600 md:text-left">
               Ti-Books was born out of a deep love for Malagasy folklore and a
               desire to share these beautiful stories with the world. Our team,
               a group of passionate creators, came together with the goal of
