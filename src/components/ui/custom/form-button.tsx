@@ -13,7 +13,7 @@ export interface FormButtonProps
 const FormButton = ({ children, className, ...props }: FormButtonProps) => {
   const { pending } = useFormStatus();
   return (
-    <Button type="submit" className={className} {...props}>
+    <Button type="submit" disabled={pending} className={className} {...props}>
       {pending ? (
         <LiaSpinnerSolid size={24} className="animate-spin" />
       ) : (

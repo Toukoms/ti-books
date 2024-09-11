@@ -1,10 +1,7 @@
 import FeedbackSection from "@/components/layout/feedback-section";
 import BookDetail from "@/components/ui/custom/book-detail";
 import { Separator } from "@/components/ui/separator";
-import {
-  getStoryBookById,
-  getStoryBooks,
-} from "@/lib/firestore/story-books.action";
+import { getStoryBookById } from "@/lib/firestore/story-books.action";
 import type { Metadata } from "next";
 
 export async function generateMetadata({
@@ -12,11 +9,10 @@ export async function generateMetadata({
 }: {
   params: { id?: string };
 }): Promise<Metadata> {
-  const book = await getStoryBookById(params.id!);
-  if (!book) throw new Error(`No storybook with id=${params.id} found`);
+  const { storyBook } = await getStoryBookById(params.id!);
   return {
-    title: book.title,
-    description: book.synopsis,
+    title: storyBook.title,
+    description: storyBook.synopsis,
   };
 }
 
@@ -26,14 +22,11 @@ export async function generateMetadata({
 // }
 
 const BookDetailPage = async ({ params }: { params: { id?: string } }) => {
-  const book = await getStoryBookById(params.id!);
-  if (!book) throw new Error(`No storybook with id=${params.id} found`);
-  
   return (
     <main className="max-w-screen-md px-4 mx-auto mt-4 mb-16">
-      <BookDetail {...book} />
+      <BookDetail bookId={params.id!} />
       <Separator className="my-4" />
-      <FeedbackSection bookId={params.id}/>
+      <FeedbackSection bookId={params.id} />
     </main>
   );
 };

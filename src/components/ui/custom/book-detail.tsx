@@ -1,50 +1,22 @@
-"use client";
-import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Skeleton } from "../skeleton";
 import { ArrowLeft, MoveUpRight } from "lucide-react";
 import { Badge } from "../badge";
 import { cn, nFormatter } from "@/lib/utils";
-import LoadingButton from "./loading-button";
-import { incrementStoryBookViews } from "@/lib/firestore/story-books.action";
+import { getStoryBookById, incrementStoryBookViews } from "@/lib/firestore/story-books.action";
+import FormButton from "./form-button";
 
-const StorybookDetail: React.FC<IBook> = (props) => {
-  const {
-    id,
-    title,
-    link,
-    image,
-    synopsis,
-    author,
-    genre,
-    publicationDate,
-    views,
-  } = props;
-  const [loading, setLoading] = useState(true);
+const StorybookDetail = async ({ bookId }: { bookId: string }) => {
+  const {storyBook, loading} = await getStoryBookById(bookId);
 
-  const handleReadBook = () => {
-    setTimeout(async () => {
-      await incrementStoryBookViews(id);
-    }, 3100);
-    if (link) {
-      window.open(link, "_blank");
-    } else {
-      alert("No link available for this ");
-    }
-  };
-
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-  }, []);
+  const {title, author, genre, image, id, link, publicationDate, synopsis, views} = storyBook;
 
   return (
     <div className="max-w-screen-md p-4 mx-auto bg-white rounded-lg">
       <div className="mb-4">
         <Link
-          href="/stories"
+          href=""
           className="inline-flex items-center text-lg text-green-600 hover:underline"
         >
           <ArrowLeft size={16} className="mr-2" />
@@ -59,6 +31,7 @@ const StorybookDetail: React.FC<IBook> = (props) => {
             src={image || ""}
             alt={title || ""}
             layout="fill"
+            size=""
             objectFit="cover"
             className="rounded-lg"
           />
@@ -98,12 +71,13 @@ const StorybookDetail: React.FC<IBook> = (props) => {
         {loading ? (
           <Skeleton className="w-16 h-4" />
         ) : (
-          <LoadingButton
-            onBtnClick={handleReadBook}
-            className="flex items-center gap-1"
-          >
-            Read <MoveUpRight size={12} />
-          </LoadingButton>
+          <form action={incrementStoryBookViews} className="flex items-center gap-1" target="_blank">
+            <input type="hidden" name="book_id" value={id} />
+            <input type="hidden" name="redirect_link" value={link} />
+            <FormButton>
+              Read <MoveUpRight size={12} />
+            </FormButton>
+          </form>
         )}
       </div>
     </div>

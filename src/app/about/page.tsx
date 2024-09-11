@@ -136,15 +136,17 @@ const AboutPage = () => {
                 href={
                   "https://www.passerellesnumeriques.org/fr/nos-actions/madagascar/"
                 }
+                aria-label="passerelles numeriques madagascar link"
                 target="_blank"
                 className={cn(
                   buttonVariants({ variant: "link" }),
-                  "text-lg p-0 inline"
+                  "text-lg p-0 inline whitespace-normal text-wrap"
                 )}
               >
-                Passerelles Numeriques Madagascar&apos;s
-              </Link>{" "}
-              students passionate about technologies and Malagasy culture.
+                Passerelles Numeriques Madagascar
+              </Link>
+              &apos;s students passionate about technologies and Malagasy
+              culture.
             </p>
             <p className="text-lg text-gray-600">
               Ti-Books was born out of a deep love for Malagasy folklore and a

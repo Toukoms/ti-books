@@ -22,6 +22,7 @@ const LoadingButton = ({children, className, onBtnClick: onClick, ...props }: Lo
           setLoading(false);
         }, 3000);
       }}
+      disabled={loading}
       className={className}
       {...props}
     >

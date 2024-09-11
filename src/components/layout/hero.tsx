@@ -10,14 +10,16 @@ const Hero = () => {
       <Image
         className="absolute hidden w-48 transform -translate-y-1/2 xl:w-64 -z-10 lg:block aspect-square top-1/2 left-6 xl:left-20 -scale-x-100"
         src={"/images/boy_reading_angano.png"}
-        alt={"boy reading angano"}
+        alt={"boy reading angano left"}
+        priority
         width={500}
         height={500}
       />
       <Image
         className="absolute hidden w-48 transform -translate-y-1/2 xl:w-64 -z-10 lg:block aspect-square top-1/2 right-6 xl:right-20"
         src={"/images/boy_reading_angano.png"}
-        alt={"boy reading angano"}
+        alt={"boy reading angano right"}
+        priority
         width={500}
         height={500}
       />
@@ -46,7 +48,10 @@ const Hero = () => {
             &nbsp;<b>language learners</b> and <b>culture lovers</b> alike.
           </span>
         </p>
-        <p className="flex items-center m-0 text-sm font-semibold text-gray-600">It&apos;s Free&nbsp;<DollarSignIcon className="inline" size={16}/></p>
+        <p className="flex items-center m-0 text-sm font-semibold text-gray-600">
+          It&apos;s Free&nbsp;
+          <DollarSignIcon className="inline" size={16} />
+        </p>
         <Link
           href={"/stories"}
           className={cn(

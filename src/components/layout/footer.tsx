@@ -23,18 +23,28 @@ const Footer = () => {
             <h4 className="mb-2 ml-4 text-lg font-semibold underline">
               Our Mission:
             </h4>
-            <p className="ml-4 mb-4 text-sm">
+            <p className="mb-4 ml-4 text-sm">
               Promoting Angano Malagasy and enhancing English learning through
               immersive, interactive storybooks.
             </p>
-            <p className="text-gray-800 text-sm w-min ml-4 mb-2 underline whitespace-nowrap">In collaboration with</p>
-            <Image
-              src="/logo-pnm.png"
-              alt="Logo Passerelles Numériques Madagascar"
-              width={120}
-              height={30}
-              className="ml-4"
-            />
+            <p className="mb-2 ml-4 text-sm tracking-wide text-gray-600 w-min whitespace-nowrap">
+              In collaboration with
+            </p>
+            <Link
+              href="https://www.passerellesnumeriques.org/fr/nos-actions/madagascar/"
+              target="_blank"
+              aria-label="passerelles numeriques madagascar link"
+              className="block py-3 pl-3 pr-6 ml-4 bg-gray-100 border border-gray-400 rounded-md w-fit"
+            >
+              <Image
+                src="/logo-pnm.png"
+                alt="Logo Passerelles Numériques Madagascar"
+                className="w-auto h-auto"
+                width={120}
+                height={30}
+                priority
+              />
+            </Link>
           </div>
 
           {/* Quick Navigation Links */}
@@ -96,15 +106,17 @@ const Footer = () => {
               <Mail />{" "}
               <Link
                 href="mailto:contactti-books.com@proton.me"
+                aria-label="ti-books email"
                 className="hover:text-primary hover:underline"
               >
                 contactti-books.com@proton.me
               </Link>
             </p>
-            <div className="mt-4 flex gap-4 items-center">
+            <div className="flex items-center gap-4 mt-4">
               <Link
                 href="https://www.facebook.com/profile.php?id=61564943828637"
                 target="_blank"
+                aria-label="ti-books facebook page link"
                 className="hover:text-primary hover:underline"
               >
                 <FaFacebook size={32} />
@@ -112,6 +124,7 @@ const Footer = () => {
               <Link
                 href="https://x.com/TiBooks2024"
                 target="_blank"
+                aria-label="ti-books x_twitter page link"
                 className="hover:text-primary hover:underline"
               >
                 <FaXTwitter size={32} />
@@ -119,6 +132,7 @@ const Footer = () => {
               <Link
                 href="https://www.instagram.com/tibooks5/"
                 target="_blank"
+                aria-label="ti-books instagram page link"
                 className="hover:text-primary hover:underline"
               >
                 <FaInstagram size={32} />
@@ -126,14 +140,14 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Newsletter Signup */}
+          {/* Newsletter Sign-up */}
           <div>
             <h4 className="mb-4 text-lg font-semibold">Stay Connected</h4>
             <p>Subscribe to our newsletter for the latest updates.</p>
             <Link
               href="https://2666880c.sibforms.com/serve/MUIFAPnmoMOH0e8CQGR6MEiiSaHfhXnp24aYnza4K11b5sZVtbwT2fvjq0FuyUMwrD_38OTLrRzEy2HA5v0QV5I7Xn1OsxroGS6fysW9Jp1jZ9nZJIuqO9GtbPR--ZKnFDBafqxc2LdaT2uuYdoHhpDM8ULEESDgPrHUPxBOSFI8H4bKx8Qo7dqcUcsk_l69Ow1DMhxuLlg_aCwe"
               target="_blank"
-              className={cn(buttonVariants({size: "sm"}), "mt-3")}
+              className={cn(buttonVariants({ size: "sm" }), "mt-3")}
             >
               Subscribe
             </Link>

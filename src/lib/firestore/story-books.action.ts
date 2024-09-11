@@ -12,6 +12,7 @@ import {
 } from "firebase/firestore";
 import { db } from "../firebase-config";
 import { unstable_cache } from "next/cache";
+import { redirect } from "next/navigation";
 
 const getStoryBooks = unstable_cache(
   async () => {
@@ -68,8 +69,11 @@ const getStoryBookBy = async (key: string, value: string) => {
 };
 
 const getStoryBookById = async (id: string) => {
+  let loading = true;
   const docRef = doc(db, "storybooks", id);
-  const docSnap = await getDoc(docRef);
+  const docSnap = await getDoc(docRef).finally(() => {
+    loading = false;
+  });
   if (!docSnap.exists()) {
     throw new Error(`Storybook with id=${id} not found.`);
   }
@@ -77,14 +81,27 @@ const getStoryBookById = async (id: string) => {
     id: docSnap.id,
     ...(docSnap.data() as Omit<IBook, "id">),
   };
-  return storyBook;
+  return { storyBook, loading };
 };
 
-const incrementStoryBookViews = async (id: string) => {
-  const docRef = doc(db, "storybooks", id);
-  const updatedDoc = await updateDoc(docRef, {
+const incrementStoryBookViews = async (formData: FormData) => {
+  let success = false;
+  const docRef = doc(db, "storybooks", formData.get("book_id") as string);
+  await updateDoc(docRef, {
     views: increment(1),
-  });
+  })
+    .then(() => {
+      console.log("Successfully updated, should be redirected to -> ", formData.get("redirect_link") as string);
+      success = true;
+    })
+    .catch((error) => {
+      console.error("Error updating document: ", error);
+      throw new Error("Error updating document: ", error);
+    }).finally(() => {
+      if (success) {
+        redirect(formData.get("redirect_link") as string);
+      }
+    });
 };
 
 export {
