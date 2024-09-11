@@ -1,42 +1,36 @@
-import Image from "next/legacy/image";
-import Link from "next/link";
 import { Skeleton } from "../skeleton";
-import { ArrowLeft, MoveUpRight } from "lucide-react";
+import { MoveUpRight } from "lucide-react";
 import { Badge } from "../badge";
 import { cn, nFormatter } from "@/lib/utils";
-import { getStoryBookById, incrementStoryBookViews } from "@/lib/firestore/story-books.action";
+import {
+  getStoryBookById,
+  incrementStoryBookViews,
+} from "@/lib/firestore/story-books.action";
 import FormButton from "./form-button";
+import BackLink from "./back-link";
+import DynamicImage from "./dynamic-image";
 
 const StorybookDetail = async ({ bookId }: { bookId: string }) => {
-  const {storyBook, loading} = await getStoryBookById(bookId);
+  const { storyBook, loading } = await getStoryBookById(bookId);
 
-  const {title, author, genre, image, id, link, publicationDate, synopsis, views} = storyBook;
+  const {
+    title,
+    author,
+    genre,
+    image,
+    id,
+    link,
+    publicationDate,
+    synopsis,
+    views,
+  } = storyBook;
 
   return (
     <div className="max-w-screen-md p-4 mx-auto bg-white rounded-lg">
       <div className="mb-4">
-        <Link
-          href=""
-          className="inline-flex items-center text-lg text-green-600 hover:underline"
-        >
-          <ArrowLeft size={16} className="mr-2" />
-          Return Back
-        </Link>
+        <BackLink />
       </div>
-      <div className="relative w-full h-64 mb-4">
-        {loading ? (
-          <Skeleton className="absolute top-0 left-0 w-full h-full bg-slate-100" />
-        ) : (
-          <Image
-            src={image || ""}
-            alt={title || ""}
-            layout="fill"
-            size=""
-            objectFit="cover"
-            className="rounded-lg"
-          />
-        )}
-      </div>
+      <DynamicImage className="w-full h-64 mb-4 overflow-hidden rounded-md" src={image} alt={title} objectFit="cover" objectPosition="center" />
       <h2 className="mb-2 text-2xl font-bold">
         {loading ? <Skeleton className="w-3/4 h-6" /> : title}
         <span className="ml-2 text-sm font-semibold text-primary">
@@ -71,7 +65,10 @@ const StorybookDetail = async ({ bookId }: { bookId: string }) => {
         {loading ? (
           <Skeleton className="w-16 h-4" />
         ) : (
-          <form action={incrementStoryBookViews} className="flex items-center gap-1" target="_blank">
+          <form
+            action={incrementStoryBookViews}
+            className="flex items-center gap-1"
+          >
             <input type="hidden" name="book_id" value={id} />
             <input type="hidden" name="redirect_link" value={link} />
             <FormButton>

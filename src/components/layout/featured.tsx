@@ -1,7 +1,7 @@
 import { getBestStoryBooks } from "@/lib/firestore/story-books.action";
 import { nFormatter } from "@/lib/utils";
-import Image from "next/legacy/image";
 import Link from "next/link";
+import DynamicImage from "../ui/custom/dynamic-image";
 
 const FeaturedStories = async () => {
   const bestStories = await getBestStoryBooks();
@@ -19,16 +19,11 @@ const FeaturedStories = async () => {
               key={index}
               className="overflow-hidden transition-colors duration-500 ease-in-out bg-white border border-transparent rounded-lg shadow-lg hover:border-primary"
             >
-              <div className="relative w-full h-48 overflow-hidden">
-                <Image
-                  src={story.image}
-                  alt={story.title}
-                  layout="fill"
-                  sizes=""
-                  objectFit="cover"
-                  objectPosition="center"
-                />
-              </div>
+              <DynamicImage
+                src={story.image}
+                alt={story.title}
+                className="relative w-full h-48 overflow-hidden"
+              />
               <div className="p-6">
                 <h3 className="text-xl font-bold line-clamp-2">
                   {story.title}
