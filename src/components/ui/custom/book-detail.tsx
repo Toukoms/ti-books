@@ -6,9 +6,10 @@ import {
   getStoryBookById,
   incrementStoryBookViews,
 } from "@/lib/firestore/story-books.action";
-import FormButton from "./form-button";
+import SubmitButton from "./submit-button";
 import BackLink from "./back-link";
 import DynamicImage from "./dynamic-image";
+import ReadBookBtn from "./read-book-btn";
 
 const StorybookDetail = async ({ bookId }: { bookId: string }) => {
   const { storyBook, loading } = await getStoryBookById(bookId);
@@ -65,16 +66,7 @@ const StorybookDetail = async ({ bookId }: { bookId: string }) => {
         {loading ? (
           <Skeleton className="w-16 h-4" />
         ) : (
-          <form
-            action={incrementStoryBookViews}
-            className="flex items-center gap-1"
-          >
-            <input type="hidden" name="book_id" value={id} />
-            <input type="hidden" name="redirect_link" value={link} />
-            <FormButton>
-              Read <MoveUpRight size={12} />
-            </FormButton>
-          </form>
+          <ReadBookBtn id={id} link={link}/>
         )}
       </div>
     </div>

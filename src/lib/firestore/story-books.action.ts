@@ -12,7 +12,6 @@ import {
 } from "firebase/firestore";
 import { db } from "../firebase-config";
 import { unstable_cache } from "next/cache";
-import { redirect } from "next/navigation";
 
 const getStoryBooks = unstable_cache(
   async () => {
@@ -85,23 +84,20 @@ const getStoryBookById = async (id: string) => {
 };
 
 const incrementStoryBookViews = async (formData: FormData) => {
-  let success = false;
+  let updated = false;
   const docRef = doc(db, "storybooks", formData.get("book_id") as string);
   await updateDoc(docRef, {
     views: increment(1),
   })
     .then(() => {
-      console.log("Successfully updated, should be redirected to -> ", formData.get("redirect_link") as string);
-      success = true;
+      console.log("Book with id=" + formData.get("book_id") as string + " successfully updated.");
+      updated = true;
     })
     .catch((error) => {
       console.error("Error updating document: ", error);
       throw new Error("Error updating document: ", error);
-    }).finally(() => {
-      if (success) {
-        redirect(formData.get("redirect_link") as string);
-      }
     });
+  return updated;
 };
 
 export {
