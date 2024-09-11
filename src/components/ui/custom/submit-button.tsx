@@ -4,16 +4,16 @@ import { Button, buttonVariants } from "../button";
 import { VariantProps } from "class-variance-authority";
 import { useFormStatus } from "react-dom";
 
-export interface FormButtonProps
+export interface SubmitButtonProps
   extends React.PropsWithChildren,
     VariantProps<typeof buttonVariants> {
   className?: string;
 }
 
-const FormButton = ({ children, className, ...props }: FormButtonProps) => {
+const SubmitButton = ({ children, className, ...props }: SubmitButtonProps) => {
   const { pending } = useFormStatus();
   return (
-    <Button type="submit" className={className} {...props}>
+    <Button type="submit" disabled={pending} className={className} {...props}>
       {pending ? (
         <LiaSpinnerSolid size={24} className="animate-spin" />
       ) : (
@@ -23,4 +23,4 @@ const FormButton = ({ children, className, ...props }: FormButtonProps) => {
   );
 };
 
-export default FormButton;
+export default SubmitButton;

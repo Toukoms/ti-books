@@ -68,8 +68,11 @@ const getStoryBookBy = async (key: string, value: string) => {
 };
 
 const getStoryBookById = async (id: string) => {
+  let loading = true;
   const docRef = doc(db, "storybooks", id);
-  const docSnap = await getDoc(docRef);
+  const docSnap = await getDoc(docRef).finally(() => {
+    loading = false;
+  });
   if (!docSnap.exists()) {
     throw new Error(`Storybook with id=${id} not found.`);
   }
@@ -77,14 +80,24 @@ const getStoryBookById = async (id: string) => {
     id: docSnap.id,
     ...(docSnap.data() as Omit<IBook, "id">),
   };
-  return storyBook;
+  return { storyBook, loading };
 };
 
-const incrementStoryBookViews = async (id: string) => {
-  const docRef = doc(db, "storybooks", id);
-  const updatedDoc = await updateDoc(docRef, {
+const incrementStoryBookViews = async (formData: FormData) => {
+  let updated = false;
+  const docRef = doc(db, "storybooks", formData.get("book_id") as string);
+  await updateDoc(docRef, {
     views: increment(1),
-  });
+  })
+    .then(() => {
+      console.log("Book with id=" + formData.get("book_id") as string + " successfully updated.");
+      updated = true;
+    })
+    .catch((error) => {
+      console.error("Error updating document: ", error);
+      throw new Error("Error updating document: ", error);
+    });
+  return updated;
 };
 
 export {

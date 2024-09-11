@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 import NavLinks from "./client/nav-links";
 import { cn } from "@/lib/utils";
@@ -17,11 +17,17 @@ function Header() {
   return (
     <header className="fixed z-50 top-0 left-1/2 -translate-x-1/2 flex justify-between rounded-xl items-center px-2 sm:px-4 h-16 w-[calc(100vw-1rem)] md:w-[calc(100vw-2rem)] lg:w-[calc(100vw-4rem)] mt-2 border border-primary/10 shadow-md bg-primary/20 backdrop-blur-xl">
       <Link href="/">
-        <Image src="/logo.png" alt="Logo Ti-Books" width={160} height={40} />
+        <Image
+          src="/logo.png"
+          alt="Logo Ti-Books"
+          priority
+          width={160}
+          height={40}
+        />
       </Link>
       <NavLinks className="hidden sm:flex" />
       <div className="flex items-center gap-2">
-      <Link
+        <Link
           href="/stories"
           className={cn(
             buttonVariants(),
@@ -30,9 +36,10 @@ function Header() {
         >
           Explore
         </Link>
-        <span className="sm:hidden">
+        <div className="inline-flex sm:hidden">
           <Sheet>
             <SheetTrigger
+              aria-label="menu"
               className={cn(buttonVariants({ variant: "ghost", size: "icon" }))}
             >
               <Menu />
@@ -50,12 +57,12 @@ function Header() {
                   </Link>
                 </SheetTitle>
                 <SheetDescription>
-                  <NavLinks className="flex-col gap-4 items-center px-4" />
+                  <NavLinks className="flex-col items-center gap-4 px-4" />
                 </SheetDescription>
               </SheetHeader>
             </SheetContent>
           </Sheet>
-        </span>
+        </div>
       </div>
     </header>
   );

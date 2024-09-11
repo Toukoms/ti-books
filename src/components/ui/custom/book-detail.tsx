@@ -1,69 +1,37 @@
-"use client";
-import React, { useEffect, useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
 import { Skeleton } from "../skeleton";
-import { ArrowLeft, MoveUpRight } from "lucide-react";
+import { MoveUpRight } from "lucide-react";
 import { Badge } from "../badge";
 import { cn, nFormatter } from "@/lib/utils";
-import LoadingButton from "./loading-button";
-import { incrementStoryBookViews } from "@/lib/firestore/story-books.action";
+import {
+  getStoryBookById,
+  incrementStoryBookViews,
+} from "@/lib/firestore/story-books.action";
+import SubmitButton from "./submit-button";
+import BackLink from "./back-link";
+import DynamicImage from "./dynamic-image";
+import ReadBookBtn from "./read-book-btn";
 
-const StorybookDetail: React.FC<IBook> = (props) => {
+const StorybookDetail = async ({ bookId }: { bookId: string }) => {
+  const { storyBook, loading } = await getStoryBookById(bookId);
+
   const {
-    id,
     title,
-    link,
-    image,
-    synopsis,
     author,
     genre,
+    image,
+    id,
+    link,
     publicationDate,
+    synopsis,
     views,
-  } = props;
-  const [loading, setLoading] = useState(true);
-
-  const handleReadBook = () => {
-    setTimeout(async () => {
-      await incrementStoryBookViews(id);
-    }, 3100);
-    if (link) {
-      window.open(link, "_blank");
-    } else {
-      alert("No link available for this ");
-    }
-  };
-
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-  }, []);
+  } = storyBook;
 
   return (
     <div className="max-w-screen-md p-4 mx-auto bg-white rounded-lg">
       <div className="mb-4">
-        <Link
-          href="/stories"
-          className="inline-flex items-center text-lg text-green-600 hover:underline"
-        >
-          <ArrowLeft size={16} className="mr-2" />
-          Return Back
-        </Link>
+        <BackLink />
       </div>
-      <div className="relative w-full h-64 mb-4">
-        {loading ? (
-          <Skeleton className="absolute top-0 left-0 w-full h-full bg-slate-100" />
-        ) : (
-          <Image
-            src={image || ""}
-            alt={title || ""}
-            layout="fill"
-            objectFit="cover"
-            className="rounded-lg"
-          />
-        )}
-      </div>
+      <DynamicImage className="w-full h-64 mb-4 overflow-hidden rounded-md" src={image} alt={title} objectFit="cover" objectPosition="center" />
       <h2 className="mb-2 text-2xl font-bold">
         {loading ? <Skeleton className="w-3/4 h-6" /> : title}
         <span className="ml-2 text-sm font-semibold text-primary">
@@ -98,12 +66,7 @@ const StorybookDetail: React.FC<IBook> = (props) => {
         {loading ? (
           <Skeleton className="w-16 h-4" />
         ) : (
-          <LoadingButton
-            onBtnClick={handleReadBook}
-            className="flex items-center gap-1"
-          >
-            Read <MoveUpRight size={12} />
-          </LoadingButton>
+          <ReadBookBtn id={id} link={link}/>
         )}
       </div>
     </div>

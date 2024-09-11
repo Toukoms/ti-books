@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { buttonVariants } from "../ui/button";
 import { DollarSignIcon, LucideSquareArrowOutUpRight } from "lucide-react";
 import Link from "next/link";
@@ -7,20 +7,24 @@ import { cn } from "@/lib/utils";
 const Hero = () => {
   return (
     <section className="relative flex justify-center my-4 mb-16">
-      <Image
-        className="absolute hidden w-48 transform -translate-y-1/2 xl:w-64 -z-10 lg:block aspect-square top-1/2 left-6 xl:left-20 -scale-x-100"
-        src={"/images/boy_reading_angano.png"}
-        alt={"boy reading angano"}
-        width={500}
-        height={500}
-      />
-      <Image
-        className="absolute hidden w-48 transform -translate-y-1/2 xl:w-64 -z-10 lg:block aspect-square top-1/2 right-6 xl:right-20"
-        src={"/images/boy_reading_angano.png"}
-        alt={"boy reading angano"}
-        width={500}
-        height={500}
-      />
+      <div className="absolute hidden w-48 transform -translate-y-1/2 xl:w-64 -z-10 lg:block aspect-square top-1/2 left-6 xl:left-20 -scale-x-100">
+        <Image
+          src={"/images/boy_reading_angano.png"}
+          alt={"boy reading angano left"}
+          priority
+          width={500}
+          height={500}
+        />
+      </div>
+      <div className="absolute hidden w-48 transform -translate-y-1/2 xl:w-64 -z-10 lg:block aspect-square top-1/2 right-6 xl:right-20">
+        <Image
+          src={"/images/boy_reading_angano.png"}
+          alt={"boy reading angano right"}
+          priority
+          width={500}
+          height={500}
+        />
+      </div>
 
       <div className="flex flex-col items-center w-full gap-4 px-4 text-center md:w-1/2">
         <div className="flex flex-col gap-1">
@@ -46,7 +50,10 @@ const Hero = () => {
             &nbsp;<b>language learners</b> and <b>culture lovers</b> alike.
           </span>
         </p>
-        <p className="flex items-center m-0 text-sm font-semibold text-gray-600">It&apos;s Free&nbsp;<DollarSignIcon className="inline" size={16}/></p>
+        <p className="flex items-center m-0 text-sm font-semibold text-gray-600">
+          It&apos;s Free&nbsp;
+          <DollarSignIcon className="inline" size={16} />
+        </p>
         <Link
           href={"/stories"}
           className={cn(
