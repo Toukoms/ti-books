@@ -31,7 +31,10 @@ const getFeedbacks = async (bookId: string) => {
   onSnapshot(feedQuery, (snapshot) => {
     snapshot.docChanges().forEach((change) => {
       if (change.type === "added") {
-        revalidatePath(`${process.env.NEXT_PUBLIC_BASE_URL}/stories/${bookId}`, "page")
+        revalidatePath(
+          `${process.env.NEXT_PUBLIC_BASE_URL}/stories/${bookId}`,
+          "page"
+        );
       }
     });
   });

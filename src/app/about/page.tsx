@@ -39,7 +39,7 @@ const AboutPage = () => {
     },
     {
       name: "RAZANAMPANIRY Sarindra Emeline",
-      role: "Designer & Book Creator",
+      role: "Designer & Book Creator & Sound Editor",
       image: "https://iili.io/dvSL03N.jpg",
       linkedin: "https://www.linkedin.com/in/sarindra-razanampaniry-aa0040310/",
       tel: "+261 34 13 156 83",
@@ -53,7 +53,7 @@ const AboutPage = () => {
     },
     {
       name: "TSITOHAINA Miharizo Danie",
-      role: "Frontend Designer & Web Developer",
+      role: "Designer & Book Creator & Community Manager",
       image:
         "https://lh3.googleusercontent.com/pw/AP1GczMYPPHBYqXFKOOGnZKxcdBE3tsdR4ZbxKLZepc3QSucn8gjsE9VMFTsPYzpoRtZihT45bfO1jv2iGuNKS8SRRRLJJz9JA6H8R1beiVB_EOkX7hV2TK1Oc8OtIEjNW6dG-dgjnZx4jg1JwS_UJUtu6VE=w518-h690-s-no-gm?authuser=0",
       linkedin: "https://www.linkedin.com/in/miharizo-tsitohaina-716453319/",

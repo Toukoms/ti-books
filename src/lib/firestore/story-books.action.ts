@@ -11,28 +11,24 @@ import {
   where,
 } from "firebase/firestore";
 import { db } from "../firebase-config";
-import { unstable_cache } from "next/cache";
+import { revalidatePath, unstable_cache } from "next/cache";
 
-const getStoryBooks = unstable_cache(
-  async () => {
-    const q = query(collection(db, "storybooks"), orderBy("title"));
-    const querySnapshot = await getDocs(q);
-    if (querySnapshot.empty) {
-      console.log("Storybooks is empty.");
-      return null;
-    }
-    const storyBooks: IBook[] = querySnapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...(doc.data() as Omit<IBook, "id">),
-    }));
-    storyBooks.sort(
-      (a, b) => Date.parse(b.publicationDate) - Date.parse(a.publicationDate)
-    );
-    return storyBooks;
-  },
-  ["story-books"],
-  { revalidate: 120, tags: ["story-books"] }
-);
+const getStoryBooks = async () => {
+  const q = query(collection(db, "storybooks"), orderBy("title"));
+  const querySnapshot = await getDocs(q);
+  if (querySnapshot.empty) {
+    console.log("Storybooks is empty.");
+    return null;
+  }
+  const storyBooks: IBook[] = querySnapshot.docs.map((doc) => ({
+    id: doc.id,
+    ...(doc.data() as Omit<IBook, "id">),
+  }));
+  storyBooks.sort(
+    (a, b) => Date.parse(b.publicationDate) - Date.parse(a.publicationDate)
+  );
+  return storyBooks;
+};
 
 const getBestStoryBooks = unstable_cache(
   async () => {
@@ -53,19 +49,19 @@ const getBestStoryBooks = unstable_cache(
   { revalidate: 360, tags: ["best-story-books"] }
 );
 
-const getStoryBookBy = async (key: string, value: string) => {
-  const q = query(collection(db, "storybooks"), where(key, "==", value));
-  const querySnapshot = await getDocs(q);
-  if (querySnapshot.empty) {
-    console.log("No storybook found.");
-    return null;
-  }
-  const storyBooks: IBook[] = querySnapshot.docs.map((doc) => ({
-    id: doc.id,
-    ...(doc.data() as Omit<IBook, "id">),
-  }));
-  return storyBooks;
-};
+// const getStoryBookBy = async (key: string, value: string) => {
+//   const q = query(collection(db, "storybooks"), where(key, "==", value));
+//   const querySnapshot = await getDocs(q);
+//   if (querySnapshot.empty) {
+//     console.log("No storybook found.");
+//     return null;
+//   }
+//   const storyBooks: IBook[] = querySnapshot.docs.map((doc) => ({
+//     id: doc.id,
+//     ...(doc.data() as Omit<IBook, "id">),
+//   }));
+//   return storyBooks;
+// };
 
 const getStoryBookById = async (id: string) => {
   let loading = true;
@@ -85,17 +81,24 @@ const getStoryBookById = async (id: string) => {
 
 const incrementStoryBookViews = async (formData: FormData) => {
   let updated = false;
-  const docRef = doc(db, "storybooks", formData.get("book_id") as string);
+  const bookId = formData.get("book_id") as string;
+  const docRef = doc(db, "storybooks", bookId);
   await updateDoc(docRef, {
     views: increment(1),
   })
     .then(() => {
-      console.log("Book with id=" + formData.get("book_id") as string + " successfully updated.");
+      console.log("Book with id=" + bookId + " successfully updated.");
       updated = true;
     })
     .catch((error) => {
       console.error("Error updating document: ", error);
       throw new Error("Error updating document: ", error);
+    })
+    .finally(() => {
+      revalidatePath(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/stories/${bookId}`,
+        "page"
+      );
     });
   return updated;
 };
@@ -103,7 +106,7 @@ const incrementStoryBookViews = async (formData: FormData) => {
 export {
   getStoryBooks,
   getBestStoryBooks,
-  getStoryBookBy,
   getStoryBookById,
   incrementStoryBookViews,
+  // getStoryBookBy,
 };
