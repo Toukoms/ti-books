@@ -1,5 +1,7 @@
 # Ti-Books
 
+You can check it in this link: [https://ti-books.vercel.app/](https://ti-books.vercel.app/) or type "ti-books malagasy" on Google and you will find it at the first page. 
+
 ![image](https://github.com/user-attachments/assets/033caec0-e2f0-45fe-9f5a-d92003ebbfed)
 
 
